@@ -223,11 +223,16 @@ a{ color:inherit; }
 }
 .marquee__track{
   display:flex; gap:2.5rem; align-items:center; width:max-content;
-  animation:slide 46s linear infinite;
+  animation:slide 150s linear infinite;
 }
+.marquee:hover .marquee__track{ animation-play-state:paused; }
 .marquee__track span{ font-size:.85rem; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap; }
 .marquee__track i{ color:var(--gold); font-size:.5rem; font-style:normal; }
 @keyframes slide{ to{ transform:translateX(-50%); } }
+
+@media (max-width:760px){
+  .marquee__track{ animation-duration:90s; }
+}
 
 /* ── Statement ───────────────────────────────────────── */
 .stmt{ padding:clamp(6rem,14vh,11rem) 0 clamp(4rem,8vh,7rem); }
@@ -482,9 +487,9 @@ a{ color:inherit; }
 /* ── Founders ────────────────────────────────────────── */
 .founders{ padding:clamp(5rem,12vh,10rem) 0; }
 .founders__inner{ display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,6vw,6rem); align-items:center; }
-.founders__img{ position:relative; max-width:424px; }
+.founders__img{ position:relative; max-width:450px; }
 .founders__img img{
-  width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px;
+  width:100%; height:auto; border-radius:2px;
   filter:saturate(1.02) contrast(1.02);
   background:var(--paper-2);
 }
