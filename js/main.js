@@ -50,6 +50,21 @@
 
   $$('.reveal, .split').forEach(el => io.observe(el));
 
+  /* ── Elapsed-years figures ──────────────────────────────
+     Anything derived from the incorporation date is computed at
+     render time, so "N years" can never quietly go stale.        */
+  function yearsSince(iso) {
+    const from = new Date(iso + 'T00:00:00');
+    const now = new Date();
+    let years = now.getFullYear() - from.getFullYear();
+    const monthDelta = now.getMonth() - from.getMonth();
+    if (monthDelta < 0 || (monthDelta === 0 && now.getDate() < from.getDate())) years--;
+    return years;
+  }
+
+  $$('[data-years-since]').forEach(el => { el.textContent = yearsSince(el.dataset.yearsSince); });
+  $$('[data-count-since]').forEach(el => { el.dataset.count = yearsSince(el.dataset.countSince); });
+
   /* ── Count-up numbers ───────────────────────────────── */
   const countIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
