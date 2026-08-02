@@ -488,6 +488,20 @@ a{ color:inherit; }
 }
 .founders__text p{ font-size:1.02rem; color:rgba(10,20,32,.7); max-width:52ch; }
 .founders__text .h-display{ margin-bottom:1.8rem; }
+.founders__stat{
+  display:flex; align-items:baseline; gap:.15rem; flex-wrap:wrap;
+  margin:2.2rem 0; padding:1.5rem 0; border-block:1px solid var(--rule);
+}
+.founders__stat-v{
+  font-family:'Fraunces',serif; font-size:clamp(3.4rem,7vw,5rem); font-weight:300;
+  line-height:.85; letter-spacing:-.05em; color:var(--ink);
+}
+.founders__stat-plus{
+  font-family:'Fraunces',serif; font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:300; color:var(--gold); line-height:1; margin-right:1.1rem;
+}
+.founders__stat-l{ font-size:.88rem; color:rgba(10,20,32,.6); line-height:1.45; }
+
 .founders__sigs{ display:flex; gap:2.5rem; flex-wrap:wrap; margin-top:2rem; padding-top:1.4rem; border-top:1px solid var(--rule); }
 .founders__sig b{ display:block; font-family:'Fraunces',serif; font-weight:400; font-size:1.1rem; }
 .founders__sig span{ font-size:.82rem; color:rgba(10,20,32,.5); }
