@@ -200,7 +200,9 @@
   const mqTrack = document.querySelector('.marquee__track');
   const mqWrap  = document.querySelector('.marquee');
 
-  if (mqTrack && !reduced) {
+  // Runs regardless of the reduce-motion preference: it is slow, never
+  // flashes, and the pause button below gives an explicit way to stop it.
+  if (mqTrack) {
     mqTrack.style.animation = 'none';
 
     const DRIFT   = 34;   // px per second at rest
@@ -216,9 +218,25 @@
     window.addEventListener('resize', measure);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 
+    let paused = reduced;   // reduce-motion users start with it stopped
+
     if (mqWrap) {
       mqWrap.addEventListener('pointerenter', () => { hovered = true; });
       mqWrap.addEventListener('pointerleave', () => { hovered = false; });
+
+      // Explicit pause control — satisfies WCAG 2.2.2 for auto-moving content
+      // and gives keyboard and touch users the stop that hover cannot.
+      const toggle = document.createElement('button');
+      toggle.className = 'marquee__toggle';
+      toggle.type = 'button';
+      const paint = () => {
+        toggle.setAttribute('aria-label', paused ? 'Play the scrolling list' : 'Pause the scrolling list');
+        toggle.setAttribute('aria-pressed', String(paused));
+        toggle.textContent = paused ? '▶' : '❚❚';
+      };
+      paint();
+      toggle.addEventListener('click', () => { paused = !paused; paint(); });
+      mqWrap.appendChild(toggle);
     }
 
     function tickMarquee(now) {
@@ -229,7 +247,7 @@
       velocity += ((y - lastY) - velocity) * 0.15;   // smoothed scroll velocity
       lastY = y;
 
-      if (!hovered && half > 0) {
+      if (!hovered && !paused && half > 0) {
         const added = Math.min(Math.abs(velocity) * BOOST, MAX_ADD);
         const direction = velocity < -0.4 ? -1 : 1;  // reverse on upward scroll
         offset -= (DRIFT + added) * dt * direction;
@@ -238,7 +256,8 @@
         else if (offset > 0)  offset -= half;
       }
 
-      const lean = Math.max(-7, Math.min(7, velocity * LEAN));
+      // No skew while paused, or a reduce-motion user would still see it move.
+      const lean = paused ? 0 : Math.max(-7, Math.min(7, velocity * LEAN));
       mqTrack.style.transform =
         'translate3d(' + offset.toFixed(2) + 'px,0,0) skewX(' + lean.toFixed(2) + 'deg)';
 
