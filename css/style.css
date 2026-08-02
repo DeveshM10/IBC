@@ -522,6 +522,47 @@ a{ color:inherit; }
 .cta__grid a,.cta__grid span:not(.k){ font-size:1rem; color:#fff; text-decoration:none; }
 .cta__grid a:hover{ color:var(--gold-lt); }
 
+/* ── Location ────────────────────────────────────────── */
+.location{ padding:clamp(5rem,12vh,9rem) 0 0; background:var(--paper-2); }
+.location__grid{
+  display:grid; grid-template-columns:1.55fr .95fr; gap:0;
+  margin-top:3rem; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad);
+}
+.location__map{ position:relative; min-height:clamp(340px,52vh,560px); background:var(--ink); }
+.location__map::after{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  box-shadow:inset 0 0 0 1px var(--rule);
+}
+.location__map iframe{
+  width:100%; height:100%; border:0; display:block;
+  filter:grayscale(.85) contrast(1.05); transition:filter .8s var(--ease);
+}
+.location__map:hover iframe{ filter:grayscale(0) contrast(1); }
+
+.location__panel{
+  background:var(--ink); color:rgba(255,255,255,.72);
+  padding:clamp(2rem,3.5vw,3rem); display:flex; flex-direction:column;
+}
+.location__k{
+  font-size:.66rem; text-transform:uppercase; letter-spacing:.2em;
+  color:var(--gold-lt); margin-bottom:.9rem; display:block;
+}
+.location__k:not(:first-child){ margin-top:2rem; }
+.location__addr{ font-style:normal; line-height:1.75; color:#fff; font-size:.94rem; }
+.location__btn{ margin-top:1.6rem; align-self:flex-start; }
+.location__near{
+  list-style:none; margin:0; padding:0;
+  display:grid; grid-template-columns:1fr 1fr; gap:.35rem 1rem;
+}
+.location__near li{ font-size:.88rem; position:relative; padding-left:1.1rem; }
+.location__near li::before{ content:'·'; position:absolute; left:.2rem; color:var(--gold); }
+.location__hours{ margin:0; font-size:.94rem; color:#fff; line-height:1.7; }
+
+@media (max-width:1080px){
+  .location__grid{ grid-template-columns:1fr; }
+  .location__map{ min-height:340px; }
+}
+
 /* ── Footer ──────────────────────────────────────────── */
 .footer{ background:var(--ink); color:rgba(255,255,255,.5); padding:0 0 2.5rem; font-size:.85rem; }
 .footer__top{
