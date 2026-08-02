@@ -185,6 +185,25 @@
     });
   }
 
+  /* ── Marquee: fixed pixels-per-second ───────────────────
+     Duration is derived from the track's real width so the perceived
+     speed stays constant no matter how many items it holds or how
+     wide the webfont renders them.                                  */
+  const mqTrack = document.querySelector('.marquee__track');
+  if (mqTrack && !reduced) {
+    const PX_PER_SECOND = 6;
+    const setMarqueeSpeed = () => {
+      const halfWidth = mqTrack.scrollWidth / 2;
+      if (halfWidth > 0) {
+        mqTrack.style.animationDuration = Math.round(halfWidth / PX_PER_SECOND) + 's';
+      }
+    };
+    setMarqueeSpeed();
+    window.addEventListener('resize', setMarqueeSpeed);
+    // Text metrics change once the webfont swaps in, so measure again.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(setMarqueeSpeed);
+  }
+
   /* ── Accordion: one open at a time ──────────────────── */
   const items = $$('.acc__item');
   items.forEach(item => {
