@@ -14,9 +14,10 @@
   --rule:     rgba(10,20,32,.14);
   --rule-lt:  rgba(255,255,255,.14);
 
-  --fs-display: clamp(2.6rem, 6.2vw, 6.4rem);
+  --fs-display: clamp(2.3rem, 5vw, 5.2rem);
   --fs-h2:      clamp(2.1rem, 4.6vw, 4.4rem);
-  --fs-lede:    clamp(1.05rem, 1.5vw, 1.35rem);
+  --fs-lede:    clamp(1rem, 1.35vw, 1.22rem);
+  --nav-h:      5.5rem;
 
   --pad: clamp(1.25rem, 5vw, 5rem);
   --maxw: 1320px;
@@ -138,10 +139,11 @@ a{ color:inherit; }
 }
 .nav__sub{ font-size:.62rem; line-height:1.25; letter-spacing:.13em; text-transform:uppercase; opacity:.7; }
 
-.nav__links{ display:flex; gap:2rem; }
+.nav__links{ display:flex; gap:1.6rem; }
 .nav__links a{
-  color:#fff; text-decoration:none; font-size:.83rem; letter-spacing:.02em;
-  opacity:.8; position:relative; padding-block:.3rem; transition:opacity .3s, color .5s;
+  color:#fff; text-decoration:none; font-size:.78rem; letter-spacing:.01em;
+  white-space:nowrap;
+  opacity:.75; position:relative; padding-block:.3rem; transition:opacity .3s, color .5s;
 }
 .nav__links a::after{
   content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
@@ -170,7 +172,10 @@ a{ color:inherit; }
 /* ── Hero ────────────────────────────────────────────── */
 .hero{
   position:relative; min-height:100svh; display:flex; flex-direction:column;
-  justify-content:flex-end; padding:0 0 2.5rem; overflow:hidden; background:var(--ink);
+  justify-content:flex-end; overflow:hidden; background:var(--ink);
+  /* Reserve the fixed nav's height so hero copy can never slide under it
+     on short viewports. */
+  padding:var(--nav-h) 0 2.5rem;
 }
 .hero__media{ position:absolute; inset:0; z-index:0; }
 .hero__media img{
@@ -188,7 +193,7 @@ a{ color:inherit; }
   position:relative; z-index:2; max-width:var(--maxw); width:100%;
   margin:0 auto; padding:0 var(--pad); color:#fff; padding-bottom:clamp(2rem,7vh,5rem);
 }
-.hero__title{ font-size:var(--fs-display); color:#fff; margin-bottom:1.8rem; max-width:16ch; }
+.hero__title{ font-size:var(--fs-display); color:#fff; margin-bottom:1.5rem; max-width:15ch; }
 .hero__title .line{ display:block; overflow:hidden; }
 .hero__title .line > span{
   display:block; transform:translateY(105%);
@@ -198,7 +203,7 @@ a{ color:inherit; }
 .hero.ready .hero__title .line:nth-child(2) > span{ transform:translateY(0); transition-delay:.27s; }
 .hero.ready .hero__title .line:nth-child(3) > span{ transform:translateY(0); transition-delay:.39s; }
 
-.hero__lede{ max-width:52ch; font-size:var(--fs-lede); color:rgba(255,255,255,.72); margin:0 0 2.4rem; }
+.hero__lede{ max-width:50ch; font-size:var(--fs-lede); color:rgba(255,255,255,.72); margin:0 0 2rem; }
 .hero__actions{ display:flex; gap:.9rem; flex-wrap:wrap; }
 
 .hero__foot{
@@ -219,19 +224,20 @@ a{ color:inherit; }
 /* ── Marquee ─────────────────────────────────────────── */
 .marquee{
   background:var(--ink); color:var(--gold-pale); overflow:hidden;
-  padding:1.1rem 0; border-block:1px solid rgba(255,255,255,.08);
+  padding:.95rem 0; border-block:1px solid rgba(255,255,255,.08);
+  --marquee-speed:320s;
 }
 .marquee__track{
-  display:flex; gap:2.5rem; align-items:center; width:max-content;
-  animation:slide 150s linear infinite;
+  display:flex; gap:3rem; align-items:center; width:max-content;
+  animation:slide var(--marquee-speed) linear infinite;
 }
 .marquee:hover .marquee__track{ animation-play-state:paused; }
-.marquee__track span{ font-size:.85rem; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap; }
+.marquee__track span{ font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; }
 .marquee__track i{ color:var(--gold); font-size:.5rem; font-style:normal; }
 @keyframes slide{ to{ transform:translateX(-50%); } }
 
 @media (max-width:760px){
-  .marquee__track{ animation-duration:90s; }
+  .marquee{ --marquee-speed:180s; }
 }
 
 /* ── Statement ───────────────────────────────────────── */
