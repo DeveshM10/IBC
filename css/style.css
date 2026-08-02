@@ -483,7 +483,8 @@ a{ color:inherit; }
 .founders{ padding:clamp(5rem,12vh,10rem) 0; }
 .founders__inner{ display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,6vw,6rem); align-items:center; }
 .founders__img img{
-  width:100%; border-radius:2px; filter:grayscale(1) contrast(1.1);
+  width:100%; border-radius:2px;
+  filter:saturate(1.02) contrast(1.02);
   background:var(--paper-2);
 }
 .founders__text p{ font-size:1.02rem; color:rgba(10,20,32,.7); max-width:52ch; }
