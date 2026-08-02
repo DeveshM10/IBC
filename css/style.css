@@ -6,8 +6,8 @@
   --ink:      #0A1420;
   --ink-2:    #101E2E;
   --ink-3:    #16283C;
-  --paper:    #E8E3D8;
-  --paper-2:  #DBD5C6;
+  --paper:    #DAD3C2;
+  --paper-2:  #C9C1AC;
   --gold:     #C08A2E;
   --gold-lt:  #E0B15C;
   --gold-pale:#F0DFC0;
@@ -121,7 +121,7 @@ a{ color:inherit; }
 }
 .nav.is-stuck{
   padding-block:.85rem;
-  background:rgba(232,227,216,.9);
+  background:rgba(218,211,194,.92);
   backdrop-filter:blur(16px) saturate(1.4);
   box-shadow:0 1px 0 var(--rule);
 }
@@ -655,12 +655,18 @@ a{ color:inherit; }
   .compare__col{ padding:1.8rem; }
 }
 
+/* Reduced motion — surgical, not blanket.
+   A global `animation-duration:.01ms` does not stop a looping animation,
+   it runs it 100 times a second. Each moving thing is named instead.
+   `.force-motion` (set by ?motion=1) opts back in for previewing.        */
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
-  /* The blanket rule above would otherwise loop the ticker every 0.01ms,
-     turning it into a flicker. Stop it outright instead. */
-  .marquee__track{ animation:none !important; transform:none !important; }
-  .reveal{ opacity:1; transform:none; }
-  .hero__title .line > span{ transform:none; }
-  .stmt__text .w > i,.cta__title .w > i{ transform:none; }
+  html:not(.force-motion) .marquee__track{ animation:none !important; transform:none !important; }
+  html:not(.force-motion) .hero__scroll span{ animation:none !important; }
+  html:not(.force-motion) .hero__media img{ transform:none !important; }
+  html:not(.force-motion) [data-parallax]{ transform:none !important; }
+  html:not(.force-motion) .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+  html:not(.force-motion) .hero__title .line > span{ transform:none !important; }
+  html:not(.force-motion) .stmt__text .w > i,
+  html:not(.force-motion) .cta__title .w > i{ transform:none !important; }
+  html:not(.force-motion) .btn{ transition:background .2s, color .2s, border-color .2s; }
 }

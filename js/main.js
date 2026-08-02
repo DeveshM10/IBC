@@ -5,7 +5,13 @@
 (function () {
   'use strict';
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Honour the OS "reduce motion" setting, but allow ?motion=1 to override it
+  // so the site can be previewed with full motion on a machine that has the
+  // accessibility preference switched on.
+  const forceMotion = new URLSearchParams(location.search).has('motion');
+  const reduced = !forceMotion &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (forceMotion) document.documentElement.classList.add('force-motion');
   const $  = (s, c) => (c || document).querySelector(s);
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
 
