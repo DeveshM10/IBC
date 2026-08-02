@@ -109,6 +109,7 @@
     if (heroImg && !reduced && y < window.innerHeight * 1.2) {
       heroImg.style.transform = 'translate3d(0,' + (y * 0.28) + 'px,0)';
     }
+
     ticking = false;
   }
 
@@ -185,24 +186,89 @@
     });
   }
 
-  /* ── Marquee: fixed pixels-per-second ───────────────────
-     Duration is derived from the track's real width so the perceived
-     speed stays constant no matter how many items it holds or how
-     wide the webfont renders them.                                  */
+  /* ── Marquee: scroll-reactive ticker ────────────────────
+     Driven per-frame rather than by a CSS duration, so the pace stays
+     constant regardless of track width — and so scrolling can push it.
+     It drifts at a steady readable rate, accelerates and leans with
+     scroll momentum, and runs backwards when you scroll up.          */
   const mqTrack = document.querySelector('.marquee__track');
+  const mqWrap  = document.querySelector('.marquee');
+
   if (mqTrack && !reduced) {
-    const PX_PER_SECOND = 6;
-    const setMarqueeSpeed = () => {
-      const halfWidth = mqTrack.scrollWidth / 2;
-      if (halfWidth > 0) {
-        mqTrack.style.animationDuration = Math.round(halfWidth / PX_PER_SECOND) + 's';
+    mqTrack.style.animation = 'none';
+
+    const DRIFT   = 34;   // px per second at rest
+    const BOOST   = 13;   // how hard scrolling pushes it
+    const MAX_ADD = 320;  // ceiling on scroll-added speed
+    const LEAN    = 0.22; // degrees of skew per unit of velocity
+
+    let half = mqTrack.scrollWidth / 2;
+    let offset = 0, velocity = 0, hovered = false;
+    let lastTime = performance.now(), lastY = window.scrollY;
+
+    const measure = () => { half = mqTrack.scrollWidth / 2; };
+    window.addEventListener('resize', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+    if (mqWrap) {
+      mqWrap.addEventListener('pointerenter', () => { hovered = true; });
+      mqWrap.addEventListener('pointerleave', () => { hovered = false; });
+    }
+
+    function tickMarquee(now) {
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+
+      const y = window.scrollY;
+      velocity += ((y - lastY) - velocity) * 0.15;   // smoothed scroll velocity
+      lastY = y;
+
+      if (!hovered && half > 0) {
+        const added = Math.min(Math.abs(velocity) * BOOST, MAX_ADD);
+        const direction = velocity < -0.4 ? -1 : 1;  // reverse on upward scroll
+        offset -= (DRIFT + added) * dt * direction;
+
+        if (offset <= -half) offset += half;
+        else if (offset > 0)  offset -= half;
       }
-    };
-    setMarqueeSpeed();
-    window.addEventListener('resize', setMarqueeSpeed);
-    // Text metrics change once the webfont swaps in, so measure again.
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(setMarqueeSpeed);
+
+      const lean = Math.max(-7, Math.min(7, velocity * LEAN));
+      mqTrack.style.transform =
+        'translate3d(' + offset.toFixed(2) + 'px,0,0) skewX(' + lean.toFixed(2) + 'deg)';
+
+      requestAnimationFrame(tickMarquee);
+    }
+    requestAnimationFrame(tickMarquee);
   }
+
+  /* ── Scroll parallax ────────────────────────────────────
+     Elements drift against the scroll as they cross the viewport.
+     data-parallax holds the travel distance in pixels.              */
+  const parallaxEls = $$('[data-parallax]');
+
+  if (parallaxEls.length && !reduced) {
+    let pTicking = false;
+
+    const updateParallax = () => {
+      const vh = window.innerHeight;
+      parallaxEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
+        const travel = parseFloat(el.dataset.parallax) || 12;
+        el.style.transform = 'translate3d(0,' + (-progress * travel).toFixed(2) + 'px,0)';
+      });
+      pTicking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!pTicking) { requestAnimationFrame(updateParallax); pTicking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', updateParallax, { passive: true });
+    updateParallax();
+  }
+
+  /* ── Accordion: one open at a time ──────────────────── */
 
   /* ── Accordion: one open at a time ──────────────────── */
   const items = $$('.acc__item');

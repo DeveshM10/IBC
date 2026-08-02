@@ -6,8 +6,8 @@
   --ink:      #0A1420;
   --ink-2:    #101E2E;
   --ink-3:    #16283C;
-  --paper:    #F4F1EA;
-  --paper-2:  #EAE5DA;
+  --paper:    #E8E3D8;
+  --paper-2:  #DBD5C6;
   --gold:     #C08A2E;
   --gold-lt:  #E0B15C;
   --gold-pale:#F0DFC0;
@@ -121,7 +121,7 @@ a{ color:inherit; }
 }
 .nav.is-stuck{
   padding-block:.85rem;
-  background:rgba(244,241,234,.88);
+  background:rgba(232,227,216,.9);
   backdrop-filter:blur(16px) saturate(1.4);
   box-shadow:0 1px 0 var(--rule);
 }
@@ -657,6 +657,9 @@ a{ color:inherit; }
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  /* The blanket rule above would otherwise loop the ticker every 0.01ms,
+     turning it into a flicker. Stop it outright instead. */
+  .marquee__track{ animation:none !important; transform:none !important; }
   .reveal{ opacity:1; transform:none; }
   .hero__title .line > span{ transform:none; }
   .stmt__text .w > i,.cta__title .w > i{ transform:none; }
