@@ -488,9 +488,10 @@ a{ color:inherit; }
 }
 .founders__text p{ font-size:1.02rem; color:rgba(10,20,32,.7); max-width:52ch; }
 .founders__text .h-display{ margin-bottom:1.8rem; }
-.founders__sig{ margin-top:2rem; padding-top:1.4rem; border-top:1px solid var(--rule); }
+.founders__sigs{ display:flex; gap:2.5rem; flex-wrap:wrap; margin-top:2rem; padding-top:1.4rem; border-top:1px solid var(--rule); }
 .founders__sig b{ display:block; font-family:'Fraunces',serif; font-weight:400; font-size:1.1rem; }
 .founders__sig span{ font-size:.82rem; color:rgba(10,20,32,.5); }
+.founders__text b{ font-weight:500; color:var(--ink); }
 
 /* ── CTA ─────────────────────────────────────────────── */
 .cta{ background:var(--ink); color:#fff; padding:clamp(6rem,14vh,11rem) 0; text-align:center; }
