@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 150">
+<defs>
+  <linearGradient id="ggold-split" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0"   stop-color="#E8C77A"/>
+    <stop offset=".38" stop-color="#C9A24A"/>
+    <stop offset=".62" stop-color="#F0DCA6"/>
+    <stop offset="1"   stop-color="#B8873A"/>
+  </linearGradient></defs>
+<rect width="900" height="150" fill="#0E0E0E"/>
+<g transform="translate(40,30) scale(0.9)">
+  <g fill="none" stroke="url(#ggold-split)" stroke-width="8" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10">
+    <polyline points="29,24 29,75 15,75 15,64"/>
+    <polyline points="55,24 37,24 37,49 55,49 55,75 37,75"/>
+    <polyline points="63,24 85,24"/>
+    <polyline points="74,24 74,75"/>
+  </g></g>
+<text x="150" y="72" font-family="'Fraunces','Playfair Display',Georgia,serif" font-size="40" font-weight="600" letter-spacing="1.6" fill="#FFFFFF">JST PROPERTIES</text>
+<text x="150" y="102" font-family="'Inter Tight','Montserrat','Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="300" letter-spacing="4.6" fill="url(#ggold-split)">FULFILLING YOUR DREAM PROPERTIES</text>
+<line x1="560" y1="42" x2="560" y2="106" stroke="url(#ggold-split)" stroke-width="1"/>
+<text x="588" y="80" font-family="'Inter Tight','Montserrat','Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="300" letter-spacing="2.6" fill="#FFFFFF" opacity=".72">West Ahmedabad · Since 1997</text>
+</svg>

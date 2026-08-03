@@ -102,14 +102,24 @@ a{ color:inherit; }
 .nav.is-stuck .nav__brand,.nav.is-stuck .nav__links a{ color:var(--ink); }
 .nav.is-stuck .nav__burger span{ background:var(--ink); }
 .nav__brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; color:#fff; margin-right:auto; transition:color .5s; }
-.nav__plate{
-  display:inline-flex; align-items:center; background:#fff; border-radius:3px;
-  padding:.42rem .6rem; line-height:0;
-  box-shadow:0 1px 0 rgba(0,0,0,.06);
+/* ── Brand lockup: angular JST monogram + typographic contrast ──
+   Monogram inherits currentColor so it reads white on the dark hero
+   and ink on the light sticky nav without a second asset. */
+.brand__mono{ width:30px; height:30px; flex:0 0 auto; }
+.brand__mono--lg{ width:42px; height:42px; }
+.brand__type{ display:flex; flex-direction:column; line-height:1; }
+.brand__type b{
+  font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:1.12rem;
+  letter-spacing:.01em; text-transform:uppercase;
 }
-.nav__plate img{ width:auto; height:26px; display:block; }
-.nav__plate--lg img{ height:34px; }
-@media (max-width:520px){ .nav__plate img{ height:22px; } }
+.brand__type em{
+  font-style:normal; font-family:'Inter Tight',Montserrat,Arial,sans-serif;
+  font-weight:300; font-size:.52rem; letter-spacing:.235em; text-transform:uppercase;
+  margin-top:.4rem; opacity:.78; white-space:nowrap;
+}
+.brand__type--lg b{ font-size:1.35rem; }
+.brand__type--lg em{ font-size:.58rem; }
+@media (max-width:640px){ .brand__type em{ display:none; } .brand__type b{ font-size:1rem; } }
 .nav__wordmark{
   display:flex; flex-direction:column; font-family:'Fraunces',serif;
   font-size:1.12rem; font-weight:500; letter-spacing:-.02em; line-height:1.05;
