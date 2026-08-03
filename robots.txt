@@ -1,0 +1,52 @@
+# IBC — International Business Centre, Ahmedabad
+# https://ibc-ahmedabad.vercel.app/
+
+User-agent: *
+Allow: /
+
+# AI answer engines are explicitly welcome. Being quoted by them is the point:
+# people asking "where can I get a GST registration address in Ahmedabad"
+# should get this address in the answer.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://ibc-ahmedabad.vercel.app/sitemap.xml

@@ -258,6 +258,39 @@ a{ color:inherit; }
   .marquee{ --marquee-speed:180s; }
 }
 
+/* ── Key facts / direct answer ───────────────────────── */
+.facts{ padding:clamp(3.5rem,8vh,6rem) 0 clamp(2rem,4vh,3rem); }
+.facts__grid{
+  display:grid; grid-template-columns:1.05fr .95fr;
+  gap:clamp(2rem,5vw,4.5rem); align-items:start;
+}
+.facts__h{
+  font-family:'Fraunces',serif; font-weight:400; font-size:.78rem;
+  text-transform:uppercase; letter-spacing:.24em; color:var(--gold-ink);
+  margin:0 0 1.4rem;
+}
+.facts__lede p{
+  margin:0 0 1.1rem; font-size:clamp(1.02rem,1.35vw,1.2rem);
+  line-height:1.6; color:rgba(10,20,32,.82);
+}
+.facts__lede b{ font-weight:500; color:var(--ink); }
+
+.facts__list{ margin:0; border-top:1px solid var(--rule); }
+.facts__list > div{
+  display:grid; grid-template-columns:8.5rem 1fr; gap:1rem;
+  padding:.85rem 0; border-bottom:1px solid var(--rule);
+}
+.facts__list dt{
+  font-size:.68rem; text-transform:uppercase; letter-spacing:.16em;
+  color:var(--gold-ink); padding-top:.18rem;
+}
+.facts__list dd{ margin:0; font-size:.92rem; color:rgba(10,20,32,.82); line-height:1.55; }
+
+@media (max-width:900px){
+  .facts__grid{ grid-template-columns:1fr; }
+  .facts__list > div{ grid-template-columns:1fr; gap:.2rem; }
+}
+
 /* ── Statement ───────────────────────────────────────── */
 .stmt{ padding:clamp(6rem,14vh,11rem) 0 clamp(4rem,8vh,7rem); }
 .stmt__text{
@@ -329,7 +362,7 @@ a{ color:inherit; }
   font-family:'Fraunces',serif; font-size:.9rem; color:var(--gold-lt);
   letter-spacing:.05em; display:block; margin-bottom:1rem;
 }
-.step h4{ font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; margin:0 0 .7rem; letter-spacing:-.01em; }
+.step h3{ font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; margin:0 0 .7rem; letter-spacing:-.01em; }
 .step p{ margin:0; font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.6; }
 
 .service__price{
@@ -420,7 +453,7 @@ a{ color:inherit; }
   padding:2.4rem; display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start;
   border-radius:3px;
 }
-.disclosure h4{ font-family:'Fraunces',serif; font-weight:400; font-size:1.3rem; margin:0 0 .8rem; grid-column:1/-1; }
+.disclosure h3{ font-family:'Fraunces',serif; font-weight:400; font-size:1.3rem; margin:0 0 .8rem; grid-column:1/-1; }
 .disclosure > p:first-of-type{ margin:0; font-size:.94rem; color:rgba(10,20,32,.7); }
 .disclosure__table{ width:100%; border-collapse:collapse; font-size:.9rem; }
 .disclosure__table td{ padding:.6rem 0; border-bottom:1px solid var(--rule); }
@@ -431,7 +464,7 @@ a{ color:inherit; }
 
 /* Rates */
 .rates{ margin-top:2.5rem; }
-.rates h4{ font-family:'Fraunces',serif; font-weight:400; font-size:1.3rem; margin:0 0 1.2rem; }
+.rates h3{ font-family:'Fraunces',serif; font-weight:400; font-size:1.3rem; margin:0 0 1.2rem; }
 .rates__table{ width:100%; border-collapse:collapse; font-size:.9rem; background:var(--paper); }
 .rates__table th{
   text-align:left; font-size:.68rem; text-transform:uppercase; letter-spacing:.16em;
@@ -456,7 +489,7 @@ a{ color:inherit; }
   font-family:'Fraunces',serif; font-size:1.6rem; color:var(--gold-lt);
   display:block; margin-bottom:1.2rem; letter-spacing:-.02em;
 }
-.card h4{ font-family:'Fraunces',serif; font-weight:400; font-size:1.15rem; margin:0 0 .7rem; }
+.card h3{ font-family:'Fraunces',serif; font-weight:400; font-size:1.15rem; margin:0 0 .7rem; }
 .card p{ margin:0; font-size:.88rem; color:rgba(255,255,255,.58); line-height:1.6; }
 
 .disclaimer{
@@ -473,7 +506,7 @@ a{ color:inherit; }
   padding:2.2rem 2rem 2.2rem 0; border-bottom:1px solid var(--rule); border-right:1px solid var(--rule);
 }
 .who__item:nth-child(3n){ border-right:0; }
-.who__item h4{ font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; margin:0 0 .7rem; }
+.who__item h3{ font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; margin:0 0 .7rem; }
 .who__item p{ margin:0; font-size:.92rem; color:rgba(10,20,32,.68); line-height:1.62; max-width:38ch; }
 
 /* ── How ─────────────────────────────────────────────── */
@@ -483,7 +516,7 @@ a{ color:inherit; }
   font-family:'Fraunces',serif; font-size:3rem; color:var(--gold-ink); opacity:.55;
   display:block; line-height:1; margin-bottom:1rem; letter-spacing:-.05em;
 }
-.how__step h4{ font-family:'Fraunces',serif; font-weight:400; font-size:1.15rem; margin:0 0 .6rem; }
+.how__step h3{ font-family:'Fraunces',serif; font-weight:400; font-size:1.15rem; margin:0 0 .6rem; }
 .how__step p{ margin:0; font-size:.9rem; color:rgba(10,20,32,.68); }
 
 /* ── FAQ ─────────────────────────────────────────────── */
