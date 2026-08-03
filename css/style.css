@@ -630,6 +630,7 @@ a{ color:inherit; }
   display:grid; grid-template-columns:1fr 1fr; gap:.35rem 1rem;
 }
 .location__near li{ font-size:.88rem; position:relative; padding-left:1.1rem; }
+.location__near li:last-child{ grid-column:1 / -1; }   /* the Ring Road line is long */
 .location__near li::before{ content:'·'; position:absolute; left:.2rem; color:var(--gold); }
 .location__hours{ margin:0; font-size:.94rem; color:#fff; line-height:1.7; }
 
