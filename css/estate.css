@@ -102,8 +102,14 @@ a{ color:inherit; }
 .nav.is-stuck .nav__brand,.nav.is-stuck .nav__links a{ color:var(--ink); }
 .nav.is-stuck .nav__burger span{ background:var(--ink); }
 .nav__brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; color:#fff; margin-right:auto; transition:color .5s; }
-.nav__logo{ width:34px; height:34px; flex:0 0 auto; color:currentColor; }
-.nav__logo--lg{ width:46px; height:46px; }
+.nav__plate{
+  display:inline-flex; align-items:center; background:#fff; border-radius:3px;
+  padding:.42rem .6rem; line-height:0;
+  box-shadow:0 1px 0 rgba(0,0,0,.06);
+}
+.nav__plate img{ width:auto; height:26px; display:block; }
+.nav__plate--lg img{ height:34px; }
+@media (max-width:520px){ .nav__plate img{ height:22px; } }
 .nav__wordmark{
   display:flex; flex-direction:column; font-family:'Fraunces',serif;
   font-size:1.12rem; font-weight:500; letter-spacing:-.02em; line-height:1.05;
@@ -213,6 +219,16 @@ a{ color:inherit; }
   border-left:1.5px solid var(--brick); border-bottom:1.5px solid var(--brick); transform:rotate(-45deg);
 }
 .seg .btn{ width:100%; }
+
+/* roles + services strips, verbatim from the printed banner */
+.roles{
+  list-style:none; display:flex; flex-wrap:wrap; gap:.5rem; margin:2.4rem 0 0; padding:0;
+}
+.roles li{
+  font-family:'Fraunces',serif; font-size:.86rem; letter-spacing:-.005em;
+  padding:.5rem 1.05rem; border-radius:2px;
+  background:var(--ink); color:var(--paper);
+}
 
 /* services strip, from the printed banner */
 .services{
