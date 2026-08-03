@@ -583,7 +583,7 @@ a{ color:inherit; }
   border-radius:2px; filter:saturate(1.02) contrast(1.02);
   background:var(--paper-2); box-shadow:0 0 0 1px var(--rule);
 }
-.founders__img figcaption{ padding-top:.85rem; }
+.founders__img figcaption{ min-height:3.4em; padding-top:.85rem; }
 .founders__img figcaption b{
   display:block; font-family:'Fraunces',serif; font-weight:400;
   font-size:.98rem; letter-spacing:-.01em; margin-bottom:.1rem;

@@ -27,15 +27,15 @@
 <meta name="twitter:description" content="900+ projects across West Ahmedabad. Channel partner for 1,000+ developers. Since 1997.">
 <meta name="twitter:image" content="https://www.jstproperties.in/assets/og-estate.jpg">
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="/favicon.png" sizes="64x64">
+<link rel="icon" href="/favicon-jst.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon-jst.png" sizes="64x64">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="/assets/img/atrium.jpeg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/estate.css?v=2">
+<link rel="stylesheet" href="/css/estate.css?v=3">
 
 <script type="application/ld+json">
 {
@@ -50,11 +50,14 @@
       "url": "https://www.jstproperties.in/",
       "image": "https://www.jstproperties.in/assets/og-estate.jpg",
       "telephone": "+916352085740",
+      "email": "jstestate@gmail.com",
+      "slogan": "Gateway to Your Dream Properties",
       "foundingDate": "1997-09-12",
       "vatID": "24AAACJ3854G1ZR",
       "identifier": [
         { "@type": "PropertyValue", "name": "CIN", "value": "U36939GJ1997PTC032994" },
-        { "@type": "PropertyValue", "name": "GSTIN", "value": "24AAACJ3854G1ZR" }
+        { "@type": "PropertyValue", "name": "GSTIN", "value": "24AAACJ3854G1ZR" },
+        { "@type": "PropertyValue", "name": "RERA Agent Registration", "value": "AA00475/220329R2" }
       ],
       "address": {
         "@type": "PostalAddress",
@@ -73,7 +76,8 @@
         { "@type": "Place", "name": "Thaltej" },
         { "@type": "Place", "name": "Shela" },
         { "@type": "Place", "name": "Bopal" },
-        { "@type": "Place", "name": "Shilaj" }
+        { "@type": "Place", "name": "Shilaj" },
+        { "@type": "Place", "name": "GIFT City, Gandhinagar" }
       ],
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
@@ -139,6 +143,7 @@
 </script>
 </head>
 <body>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="jst-mark" viewBox="0 0 100 100"><clipPath id="jstRing"><circle cx="50" cy="50" r="38.5"/></clipPath><circle cx="50" cy="50" r="46.5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width="1.6"/><g clip-path="url(#jstRing)" fill="currentColor"><polygon points="21,92 21,61 33,53 33,92"/><polygon points="35.6,92 35.6,46 47.6,37 47.6,92"/><polygon points="50.2,92 50.2,32 58,24.5 65.8,32 65.8,92"/><polygon points="68.4,92 68.4,53 79.6,45.5 79.6,92"/></g></symbol></svg>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -146,8 +151,7 @@
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <a href="/" class="nav__brand">
-    <span class="nav__mark">JST</span>
-    <span class="nav__sub">Properties<br>Since 1997</span>
+    <svg class="nav__logo" aria-hidden="true"><use href="#jst-mark"/></svg><span class="nav__wordmark">JST Properties<em>Gateway to your dream properties</em></span>
   </a>
   <nav class="nav__links" aria-label="Primary">
     <a href="#segments">What we deal in</a>
@@ -205,6 +209,7 @@
     <div class="hero__foot-item reveal" data-delay="700"><span class="k">Projects</span><span class="v">900+ across West Ahmedabad</span></div>
     <div class="hero__foot-item reveal" data-delay="770"><span class="k">Developers</span><span class="v">1,000+ channel partnerships</span></div>
     <div class="hero__foot-item reveal" data-delay="840"><span class="k">Experience</span><span class="v">70+ years, two generations</span></div>
+    <div class="hero__foot-item reveal" data-delay="910"><span class="k">RERA</span><span class="v">AA00475/220329R2</span></div>
   </div>
 </section>
 
@@ -230,6 +235,10 @@
       three, which means the honest answer to “apartment or plot?” is sometimes the one that
       earns us less.
     </p>
+
+    <ul class="services reveal">
+      <li>Buy</li><li>Sale</li><li>Rent</li><li>Invest</li><li>Pre-lease</li>
+    </ul>
 
     <div class="seg-grid">
       <article class="seg reveal">
@@ -265,6 +274,7 @@
         <ul>
           <li>N.A. residential plots</li>
           <li>Approved plotting schemes</li>
+          <li>Agricultural &amp; NA land parcels</li>
           <li>Title-checked, NA-converted land</li>
           <li>Long-hold investment</li>
         </ul>
@@ -327,6 +337,7 @@
       <li>200ft Ring Road</li>
       <li>Gota &amp; Chandkheda</li>
       <li>Sanand corridor</li>
+      <li>GIFT City, Gandhinagar</li>
     </ul>
   </div>
 </section>
@@ -481,12 +492,12 @@
   <div class="wrap">
     <div class="about__inner">
       <div class="about__portraits">
-        <figure class="about__img reveal" data-parallax="16">
-          <img src="/assets/img/chandrakant-v4.jpeg" alt="Chandrakant Someshwar Joshi, Founder and Director" width="390" height="488" loading="lazy" decoding="async">
+        <figure class="about__img reveal">
+          <img src="/assets/img/p-chandrakant.jpeg" alt="Chandrakant Someshwar Joshi, Founder and Director" width="400" height="500" loading="lazy" decoding="async">
           <figcaption><b>Chandrakant S. Joshi</b><span>Founder &amp; Director · DIN 02020457</span></figcaption>
         </figure>
-        <figure class="about__img reveal" data-delay="120" data-parallax="-16">
-          <img src="/assets/img/divyam-v6.jpeg" alt="Divyam Chandrakant Joshi, Director" width="450" height="554" loading="lazy" decoding="async">
+        <figure class="about__img reveal" data-delay="120">
+          <img src="/assets/img/p-divyam.jpeg" alt="Divyam Chandrakant Joshi, Director" width="400" height="500" loading="lazy" decoding="async">
           <figcaption><b>Divyam C. Joshi</b><span>Director · DIN 02020487</span></figcaption>
         </figure>
       </div>
@@ -522,6 +533,7 @@
       <div><span class="k">Office</span><a href="tel:+916352085740">+91 63520 85740</a></div>
       <div><span class="k">Divyam Joshi</span><a href="tel:+919327001929">+91 93270 01929</a></div>
       <div><span class="k">Landline</span><a href="tel:+917940321734">079 4032 1734</a></div>
+      <div><span class="k">Email</span><a href="mailto:jstestate@gmail.com">jstestate@gmail.com</a></div>
       <div><span class="k">Hours</span><span>Monday – Saturday, 10:00 – 19:00 IST</span></div>
     </div>
   </div>
@@ -534,8 +546,8 @@
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__brand">
-        <span class="nav__mark">JST</span>
-        <p>Properties<br>West Ahmedabad</p>
+        <svg class="nav__logo nav__logo--lg" aria-hidden="true"><use href="#jst-mark"/></svg>
+        <p>JST Properties<br>Gateway to your dream properties</p>
       </div>
 
       <div>
@@ -573,18 +585,8 @@
         <p><span>CIN</span> U36939GJ1997PTC032994</p>
         <p><span>GSTIN</span> 24AAACJ3854G1ZR</p>
         <p><span>Incorporated</span> 12 September 1997</p>
-        <!--
-          ═══════════════════════════════════════════════════════════
-          GUJRERA AGENT REGISTRATION NUMBER GOES HERE — REQUIRED.
-          Under Section 9 of the Real Estate (Regulation and
-          Development) Act, a real estate agent must be registered
-          before facilitating the sale of any RERA-registered project,
-          and online platforms are covered. Penalty under Section 59
-          is Rs 10,000 per day.
-          Do not promote this site until the number is inserted below
-          and this comment removed.
-          ═══════════════════════════════════════════════════════════
-        -->
+        <p class="rera"><b>RERA Registration No.</b><br>AA00475/220329R2<br>
+        <span>Divyam Chandrakant Joshi, registered real estate agent</span></p>
       </div>
     </div>
 
@@ -599,6 +601,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.896 9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.945c0 2.096.549 4.142 1.593 5.945L0 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.585 0 11.946-5.359 11.949-11.945a11.87 11.87 0 0 0-3.421-8.4"/></svg>
 </a>
 
-<script src="/js/estate.js?v=2"></script>
+<script src="/js/estate.js?v=3"></script>
 </body>
 </html>

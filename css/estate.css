@@ -102,6 +102,17 @@ a{ color:inherit; }
 .nav.is-stuck .nav__brand,.nav.is-stuck .nav__links a{ color:var(--ink); }
 .nav.is-stuck .nav__burger span{ background:var(--ink); }
 .nav__brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; color:#fff; margin-right:auto; transition:color .5s; }
+.nav__logo{ width:34px; height:34px; flex:0 0 auto; color:currentColor; }
+.nav__logo--lg{ width:46px; height:46px; }
+.nav__wordmark{
+  display:flex; flex-direction:column; font-family:'Fraunces',serif;
+  font-size:1.12rem; font-weight:500; letter-spacing:-.02em; line-height:1.05;
+}
+.nav__wordmark em{
+  font-style:normal; font-family:'Inter Tight',sans-serif; font-size:.56rem;
+  letter-spacing:.12em; text-transform:uppercase; opacity:.7; margin-top:.18rem;
+}
+@media (max-width:520px){ .nav__wordmark em{ display:none; } }
 .nav__mark{
   font-family:'Fraunces',serif; font-size:1.4rem; font-weight:500; letter-spacing:-.04em;
   line-height:1; border-right:1px solid currentColor; padding-right:.7rem;
@@ -202,6 +213,18 @@ a{ color:inherit; }
   border-left:1.5px solid var(--brick); border-bottom:1.5px solid var(--brick); transform:rotate(-45deg);
 }
 .seg .btn{ width:100%; }
+
+/* services strip, from the printed banner */
+.services{
+  list-style:none; display:flex; flex-wrap:wrap; gap:.5rem; margin:2.2rem 0 0; padding:0;
+}
+.services li{
+  font-size:.74rem; letter-spacing:.16em; text-transform:uppercase;
+  padding:.5rem 1rem; border:1px solid var(--rule); border-radius:2px; color:var(--brick-ink);
+}
+
+.rera span{ display:block; opacity:.7; margin-top:.2rem; }
+.rera b{ color:#fff; }
 
 /* ── Numbers ─────────────────────────────────────────── */
 .numbers{ padding:clamp(3rem,7vh,5rem) 0; border-top:1px solid var(--rule); }
@@ -350,7 +373,7 @@ a{ color:inherit; }
   width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:2px;
   box-shadow:0 0 0 1px var(--rule); background:var(--paper-2);
 }
-.about__img figcaption{ padding-top:.8rem; }
+.about__img figcaption{ min-height:3.4em; padding-top:.8rem; }
 .about__img b{ display:block; font-family:'Fraunces',serif; font-weight:400; font-size:.96rem; }
 .about__img span{ font-size:.73rem; color:rgba(20,32,26,.74); }
 .about__text p{ font-size:1rem; color:var(--txt); max-width:54ch; }

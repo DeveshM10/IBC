@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="JST Properties">
+  <title>JST Properties</title>
+  <!-- Rebuilt from the printed roundel: double ring, four angular towers.
+       Uses currentColor throughout so it inverts cleanly on dark or light. -->
+  <defs>
+    <clipPath id="jstRing"><circle cx="50" cy="50" r="38.5"/></clipPath>
+  </defs>
+  <circle cx="50" cy="50" r="46.5" fill="none" stroke="currentColor" stroke-width="3"/>
+  <circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  <g clip-path="url(#jstRing)" fill="currentColor">
+    <polygon points="21,92 21,61 33,53 33,92"/>
+    <polygon points="35.6,92 35.6,46 47.6,37 47.6,92"/>
+    <polygon points="50.2,92 50.2,32 58,24.5 65.8,32 65.8,92"/>
+    <polygon points="68.4,92 68.4,53 79.6,45.5 79.6,92"/>
+  </g>
+</svg>
