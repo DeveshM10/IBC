@@ -50,3 +50,7 @@ User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://ibc-ahmedabad.vercel.app/sitemap.xml
+
+# Non-standard, low-adoption, and ignored by every major AI crawler today.
+# Present only as a zero-cost hedge in case that changes.
+# LLM-Content: https://ibc-ahmedabad.vercel.app/llms.txt
