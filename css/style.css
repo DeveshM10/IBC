@@ -479,6 +479,36 @@ a{ color:inherit; }
 .gujarat{ background:var(--ink); color:#fff; padding:clamp(5rem,12vh,10rem) 0; }
 .gujarat .h-display{ color:#fff; }
 .gujarat__lede{ max-width:46ch; color:rgba(255,255,255,.6); font-size:var(--fs-lede); margin:1.8rem 0 3.5rem; }
+.gj-stats{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(255,255,255,.16); margin:0 0 3.5rem;
+}
+.gj-stats > div{
+  padding:1.6rem 1.4rem 1.6rem 0; border-bottom:1px solid rgba(255,255,255,.16);
+  display:flex; flex-direction:column; gap:.4rem;
+}
+.gj-stats .v{
+  font-family:'Fraunces',serif; font-size:clamp(1.9rem,3.2vw,2.7rem);
+  font-weight:300; letter-spacing:-.03em; line-height:1; color:var(--gold-lt);
+}
+.gj-stats .k{ font-size:.8rem; color:rgba(255,255,255,.62); line-height:1.45; }
+
+.gj-h{
+  font-family:'Fraunces',serif; font-weight:400; font-size:.76rem;
+  text-transform:uppercase; letter-spacing:.24em; color:rgba(255,255,255,.5);
+  margin:0 0 1.6rem; padding-bottom:.9rem; border-bottom:1px solid rgba(255,255,255,.16);
+}
+.sectors + .gj-h,.cards + .gj-h{ margin-top:3.5rem; }
+
+.sectors{ display:grid; grid-template-columns:repeat(2,1fr); gap:0 clamp(2rem,4vw,3.5rem); }
+.sector{ padding:1.5rem 0; border-bottom:1px solid rgba(255,255,255,.12); }
+.sector h3{
+  font-family:'Fraunces',serif; font-weight:400; font-size:1.12rem;
+  margin:0 0 .55rem; color:#fff; letter-spacing:-.01em;
+}
+.sector p{ margin:0; font-size:.9rem; line-height:1.62; color:rgba(255,255,255,.62); }
+.sector b{ color:var(--gold-lt); font-weight:400; }
+
 .cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; }
 .card{
   border:1px solid rgba(255,255,255,.15); padding:2rem 1.6rem; border-radius:3px;
@@ -501,6 +531,8 @@ a{ color:inherit; }
 
 /* ── Who ─────────────────────────────────────────────── */
 .who{ padding:clamp(5rem,12vh,10rem) 0; }
+.who__lede{ max-width:56ch; color:rgba(10,20,32,.68); font-size:var(--fs-lede); margin:1.8rem 0 0; }
+.who__lede em{ font-style:italic; color:var(--gold-ink); }
 .who__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--rule); margin-top:2rem; }
 .who__item{
   padding:2.2rem 2rem 2.2rem 0; border-bottom:1px solid var(--rule); border-right:1px solid var(--rule);
@@ -674,7 +706,7 @@ a{ color:inherit; }
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width:1080px){
-  .numbers__grid,.steps,.cards,.how__grid,.service__price{ grid-template-columns:repeat(2,1fr); }
+  .numbers__grid,.steps,.cards,.how__grid,.service__price,.gj-stats{ grid-template-columns:repeat(2,1fr); }
   .service__price > div:nth-child(2){ border-right:0; }
   .service__price > div:nth-child(-n+2){ border-bottom:1px solid rgba(255,255,255,.15); }
   .plans{ grid-template-columns:1fr; }
@@ -693,7 +725,7 @@ a{ color:inherit; }
   body{ font-size:16px; }
   .nav__links,.nav__cta{ display:none; }
   .nav__burger{ display:flex; }
-  .numbers__grid,.steps,.cards,.how__grid,.who__grid,.cta__grid{ grid-template-columns:1fr; }
+  .numbers__grid,.steps,.cards,.how__grid,.who__grid,.cta__grid,.gj-stats,.sectors{ grid-template-columns:1fr; }
   .service__price{ grid-template-columns:1fr; }
   .service__price > div{ border-right:0; border-bottom:1px solid rgba(255,255,255,.15); }
   .who__item{ border-right:0 !important; padding-right:0; }
