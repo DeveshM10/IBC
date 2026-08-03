@@ -65,7 +65,9 @@ or fulfilment centre for Amazon FBA and Flipkart.
 
 ## Pages
 
-- [Home](https://ibc-ahmedabad.vercel.app/): full detail on pricing, the
-  premises, legality, and who the service is for.
+- [Virtual office](https://www.jstproperties.in/virtual-office/): full detail on pricing,
+  the premises, legality, and who the service is for.
+- [JST Properties](https://www.jstproperties.in/): the parent real estate consultancy —
+  900+ residential, commercial and NA plotting projects across West Ahmedabad.
 
 Last reviewed: 4 August 2026

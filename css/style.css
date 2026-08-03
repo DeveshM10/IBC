@@ -756,3 +756,26 @@ a{ color:inherit; }
   html:not(.force-motion) .cta__title .w > i{ transform:none !important; }
   html:not(.force-motion) .btn{ transition:background .2s, color .2s, border-color .2s; }
 }
+
+/* ── Cross-silo link to the real estate site ─────────── */
+.nav__re{
+  display:inline-flex; align-items:center; gap:.4rem; text-decoration:none;
+  font-size:.76rem; padding:.55rem 1rem; border-radius:2px;
+  border:1px solid rgba(255,255,255,.3); color:#fff; white-space:nowrap;
+  transition:background .35s, color .35s, border-color .35s;
+}
+.nav__re b{ font-weight:500; }
+.nav__re span{ opacity:.62; }
+.nav__re:hover{ background:#fff; color:var(--ink); border-color:#fff; }
+.nav.is-stuck .nav__re{ border-color:var(--rule); color:var(--ink); }
+.nav.is-stuck .nav__re:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.mobile-menu .is-re{
+  margin-top:1.2rem; font-size:1.1rem; color:var(--gold-lt);
+  border-top:1px solid rgba(255,255,255,.2); padding-top:1.4rem;
+}
+.footer__silos{
+  padding:1.4rem 0; border-top:1px solid rgba(255,255,255,.1); font-size:.85rem;
+}
+.footer__silos a{ text-decoration:none; }
+.footer__silos a:hover{ color:var(--gold-lt); }
+@media (max-width:760px){ .nav__re{ display:none; } }

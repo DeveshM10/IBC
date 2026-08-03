@@ -1,5 +1,7 @@
-# IBC — International Business Centre, Ahmedabad
-# https://ibc-ahmedabad.vercel.app/
+# JST Properties — https://www.jstproperties.in/
+#   /                 real estate consultancy, West Ahmedabad
+#   /virtual-office/  IBC virtual office and GST registration address
+#   /blog/            buying guidance
 
 User-agent: *
 Allow: /
@@ -49,8 +51,8 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-Sitemap: https://ibc-ahmedabad.vercel.app/sitemap.xml
+Sitemap: https://www.jstproperties.in/sitemap.xml
 
 # Non-standard, low-adoption, and ignored by every major AI crawler today.
 # Present only as a zero-cost hedge in case that changes.
-# LLM-Content: https://ibc-ahmedabad.vercel.app/llms.txt
+# LLM-Content: https://www.jstproperties.in/virtual-office/llms.txt
