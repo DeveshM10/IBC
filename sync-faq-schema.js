@@ -1,7 +1,8 @@
 // Regenerates the FAQPage schema from the visible accordion so the two can
 // never drift apart. Run after editing any FAQ copy:  node sync-faq-schema.js
 const fs = require('fs');
-const FILE = 'index.html';
+// The FAQ now lives in the virtual-office silo. Pass a path to override.
+const FILE = process.argv[2] || 'virtual-office/index.html';
 let html = fs.readFileSync(FILE, 'utf8');
 
 const clean = s => s
