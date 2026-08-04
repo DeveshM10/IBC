@@ -350,6 +350,25 @@ a{ color:inherit; }
 .num__l{ font-size:.86rem; color:rgba(10,20,32,.68); line-height:1.45; }
 .num__l i{ font-style:normal; color:rgba(10,20,32,.68); font-size:.8rem; }
 
+/* ── Why we exist ────────────────────────────────────── */
+.why-exist{ padding:clamp(4rem,10vh,8rem) 0; background:var(--paper-2); }
+.why-exist__lede{ max-width:60ch; font-size:var(--fs-lede); color:rgba(10,20,32,.72); margin:1.8rem 0 0; }
+.why-exist__grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(2rem,5vw,4rem); margin-top:3rem; align-items:start; }
+.why-exist__arg p{ margin:0 0 1.15rem; font-size:1.02rem; color:rgba(10,20,32,.72); }
+.why-exist__arg b{ color:var(--ink); font-weight:500; }
+.why-exist__cost{ background:var(--ink); color:rgba(255,255,255,.72); padding:2rem 1.9rem; border-radius:3px; }
+.why-exist__k{ font-size:.66rem; text-transform:uppercase; letter-spacing:.18em; color:var(--gold-lt); margin:0 0 1.1rem; }
+.why-exist__list{ list-style:none; margin:0 0 1.4rem; padding:0; }
+.why-exist__list li{ font-size:.92rem; padding:.55rem 0 .55rem 1.4rem; position:relative; border-top:1px solid rgba(255,255,255,.13); }
+.why-exist__list li::before{ content:'—'; position:absolute; left:0; opacity:.5; }
+.why-exist__close{ margin:0; font-size:.92rem; color:rgba(255,255,255,.66); }
+.why-exist__promise{
+  font-family:'Fraunces',serif; font-size:clamp(1.5rem,3vw,2.4rem); line-height:1.1;
+  letter-spacing:-.02em; margin:3rem 0 0; padding-top:2rem; border-top:1px solid var(--rule);
+}
+.why-exist__promise em{ font-style:italic; color:var(--gold-ink); }
+@media (max-width:900px){ .why-exist__grid{ grid-template-columns:1fr; } }
+
 /* ── Service ─────────────────────────────────────────── */
 .service{ background:var(--ink); color:#fff; padding:clamp(5rem,12vh,10rem) 0; }
 .service .section-index{ color:rgba(255,255,255,.4); }
@@ -778,4 +797,28 @@ a{ color:inherit; }
 }
 .footer__silos a{ text-decoration:none; }
 .footer__silos a:hover{ color:var(--gold-lt); }
-@media (max-width:760px){ .nav__re{ display:none; } }
+
+
+/* ── Cross-silo link ─────────────────────────────────────
+   Deliberately loud. It is the only signpost that a whole
+   second business exists, and as a quiet outlined button it
+   was invisible. Filled in the DESTINATION silo's accent, so
+   the colour itself signals somewhere different. */
+.silo{
+  display:inline-flex; flex-direction:column; gap:.06rem; text-decoration:none;
+  padding:.46rem .9rem .5rem; border-radius:3px; white-space:nowrap;
+  background:#8A4526; color:#fff; border:0;
+  box-shadow:0 3px 16px -7px rgba(138,69,38,.85);
+  transition:transform .4s var(--ease-out), box-shadow .4s, background .3s;
+}
+.silo:hover{ background:#783B20; transform:translateY(-2px); box-shadow:0 10px 24px -9px rgba(138,69,38,.85); }
+.silo:active{ transform:translateY(0) scale(.98); }
+.silo__k{ font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; opacity:.72; }
+.silo__v{ font-size:.84rem; font-weight:500; display:flex; align-items:center; gap:.3rem; line-height:1.15; }
+.silo__v i{ font-style:normal; font-size:.85em; opacity:.85; }
+.silo__d{ font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; opacity:.66; }
+@media (max-width:760px){
+  .silo{ padding:.4rem .7rem; }
+  .silo__k,.silo__d{ display:none; }
+  .silo__v{ font-size:.74rem; }
+}

@@ -494,3 +494,27 @@ a{ color:inherit; }
   .hero__media img{ transform:none !important; }
   [data-parallax]{ transform:none !important; }
 }
+
+/* ── Cross-silo link ─────────────────────────────────────
+   Deliberately loud. It is the only signpost that a whole
+   second business exists, and as a quiet outlined button it
+   was invisible. Filled in the DESTINATION silo's accent, so
+   the colour itself signals somewhere different. */
+.silo{
+  display:inline-flex; flex-direction:column; gap:.06rem; text-decoration:none;
+  padding:.46rem .9rem .5rem; border-radius:3px; white-space:nowrap;
+  background:#9A6E25; color:#fff; border:0;
+  box-shadow:0 3px 16px -7px rgba(154,110,37,.85);
+  transition:transform .4s var(--ease-out), box-shadow .4s, background .3s;
+}
+.silo:hover{ background:#87601F; transform:translateY(-2px); box-shadow:0 10px 24px -9px rgba(154,110,37,.85); }
+.silo:active{ transform:translateY(0) scale(.98); }
+.silo__k{ font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; opacity:.72; }
+.silo__v{ font-size:.84rem; font-weight:500; display:flex; align-items:center; gap:.3rem; line-height:1.15; }
+.silo__v i{ font-style:normal; font-size:.85em; opacity:.85; }
+.silo__d{ font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; opacity:.66; }
+@media (max-width:760px){
+  .silo{ padding:.4rem .7rem; }
+  .silo__k,.silo__d{ display:none; }
+  .silo__v{ font-size:.74rem; }
+}
