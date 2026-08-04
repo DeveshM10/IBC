@@ -8,3 +8,6 @@ Thumbs.db
 
 .vercel
 .env*
+
+# keep the Apache fallback config tracked
+!.htaccess

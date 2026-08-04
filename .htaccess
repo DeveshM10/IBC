@@ -1,0 +1,70 @@
+# ═══════════════════════════════════════════════════════════
+# Apache configuration — ONLY needed if this site is hosted on
+# traditional shared hosting (cPanel / BigRock / HostGator etc.)
+# instead of Vercel.
+#
+# Vercel ignores this file and uses vercel.json. This exists so
+# that an FTP upload to shared hosting does not break every URL
+# on the site, because vercel.json does nothing on Apache.
+# ═══════════════════════════════════════════════════════════
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ── Force HTTPS. Requires an SSL certificate on the account.
+  #    Leave commented until SSL is active, or the site will
+  #    redirect into a browser error.
+  # RewriteCond %{HTTPS} !=on
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # ── Canonical host: send the bare domain to www
+  # RewriteCond %{HTTP_HOST} ^jstproperties\.in$ [NC]
+  # RewriteRule ^(.*)$ https://www.jstproperties.in/$1 [R=301,L]
+
+  # ── Clean URLs, matching Vercel's cleanUrls behaviour.
+  #    /blog/rera-number-verify-project  ->  .../rera-number-verify-project.html
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # ── Anyone arriving at the .html form is redirected to the clean
+  #    one, so a page is never reachable at two URLs.
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # ── Strip trailing slashes, again matching Vercel
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+</IfModule>
+
+# ── Caching. Assets are not content-hashed, so they must
+#    revalidate rather than being held immutably.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html            "access plus 0 seconds"
+  ExpiresByType text/css             "access plus 10 minutes"
+  ExpiresByType text/javascript      "access plus 10 minutes"
+  ExpiresByType application/javascript "access plus 10 minutes"
+  ExpiresByType image/jpeg           "access plus 5 minutes"
+  ExpiresByType image/png            "access plus 5 minutes"
+  ExpiresByType image/svg+xml        "access plus 5 minutes"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript image/svg+xml
+</IfModule>
+
+AddType application/json .json
+AddType image/svg+xml .svg
