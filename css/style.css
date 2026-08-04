@@ -134,6 +134,13 @@ a{ color:inherit; }
   display:flex; align-items:center; gap:.7rem; text-decoration:none;
   color:#fff; margin-right:auto; transition:color .5s;
 }
+.nav__plate{
+  display:inline-flex; align-items:center; background:var(--paper); border-radius:3px;
+  padding:.4rem .55rem; line-height:0; flex:0 0 auto;
+}
+.nav__plate img{ width:auto; height:24px; display:block; }
+.nav__plate--lg img{ height:32px; }
+@media (max-width:520px){ .nav__plate img{ height:20px; } }
 .nav__mark{
   font-family:'Fraunces',serif; font-size:1.45rem; font-weight:500;
   letter-spacing:-.04em; line-height:1;
@@ -562,6 +569,9 @@ a{ color:inherit; }
 .who__item{
   padding:2.2rem 2rem 2.2rem 0; border-bottom:1px solid var(--rule); border-right:1px solid var(--rule);
 }
+/* Any cell that is not in the first column has a divider immediately to
+   its left, so it needs breathing room or the text touches the line. */
+.who__item:not(:nth-child(3n+1)){ padding-left:2rem; }
 .who__item:nth-child(3n){ border-right:0; }
 .who__item h3{ font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; margin:0 0 .7rem; }
 .who__item p{ margin:0; font-size:.92rem; color:rgba(10,20,32,.68); line-height:1.62; max-width:38ch; }
@@ -738,6 +748,8 @@ a{ color:inherit; }
   .who__grid{ grid-template-columns:repeat(2,1fr); }
   .who__item:nth-child(3n){ border-right:1px solid var(--rule); }
   .who__item:nth-child(2n){ border-right:0; }
+  .who__item:not(:nth-child(3n+1)){ padding-left:0; }
+  .who__item:not(:nth-child(2n+1)){ padding-left:2rem; }
   .compare__grid{ grid-template-columns:1fr; }
   .founders__inner{ grid-template-columns:1fr; }
   .founders__portraits{ max-width:420px; }
@@ -753,7 +765,7 @@ a{ color:inherit; }
   .numbers__grid,.steps,.cards,.how__grid,.who__grid,.cta__grid,.gj-stats,.sectors{ grid-template-columns:1fr; }
   .service__price{ grid-template-columns:1fr; }
   .service__price > div{ border-right:0; border-bottom:1px solid rgba(255,255,255,.15); }
-  .who__item{ border-right:0 !important; padding-right:0; }
+  .who__item{ border-right:0 !important; padding-right:0; padding-left:0 !important; }
   .disclosure{ grid-template-columns:1fr; padding:1.8rem; }
   .stmt__note{ margin-left:0; }
   .hero__foot{ gap:1.2rem; }
