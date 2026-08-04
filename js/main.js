@@ -147,38 +147,6 @@
     }));
   }
 
-  /* ── Gallery: drag + wheel to scroll horizontally ───── */
-  const gallery = $('#gallery');
-  if (gallery) {
-    let down = false, startX = 0, startScroll = 0;
-
-    gallery.addEventListener('pointerdown', (e) => {
-      down = true;
-      startX = e.clientX;
-      startScroll = gallery.scrollLeft;
-      gallery.classList.add('dragging');
-      gallery.setPointerCapture(e.pointerId);
-    });
-    gallery.addEventListener('pointermove', (e) => {
-      if (!down) return;
-      gallery.scrollLeft = startScroll - (e.clientX - startX);
-    });
-    ['pointerup', 'pointercancel'].forEach(ev =>
-      gallery.addEventListener(ev, () => { down = false; gallery.classList.remove('dragging'); })
-    );
-
-    // vertical wheel → horizontal pan, but only while there is room to move
-    gallery.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      const max = gallery.scrollWidth - gallery.clientWidth;
-      const next = gallery.scrollLeft + e.deltaY;
-      if (next > 0 && next < max) {
-        e.preventDefault();
-        gallery.scrollLeft = next;
-      }
-    }, { passive: false });
-  }
-
   /* ── Magnetic buttons ───────────────────────────────── */
   if (!reduced && window.matchMedia('(pointer:fine)').matches) {
     $$('.magnetic').forEach(btn => {
