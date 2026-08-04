@@ -103,8 +103,10 @@ a{ color:inherit; }
 .nav.is-stuck .nav__burger span{ background:var(--ink); }
 .nav__brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; color:#fff; margin-right:auto; transition:color .5s; }
 .nav__plate{
-  display:inline-flex; align-items:center; background:#fff; border-radius:3px;
-  padding:.42rem .6rem; line-height:0; box-shadow:0 1px 0 rgba(0,0,0,.06);
+  /* Same paper as the logo artwork's own ground, so the plate and the
+     image merge into one shape instead of reading as a white card. */
+  display:inline-flex; align-items:center; background:var(--paper); border-radius:3px;
+  padding:.42rem .6rem; line-height:0;
 }
 .nav__plate img{ width:auto; height:26px; display:block; }
 .nav__plate--lg img{ height:34px; }

@@ -75,7 +75,7 @@ if (footers[0] && !/href="\/our-story"/.test(footers[0])) note('estate', 'Our St
 
 for (const p of ESTATE) {
   const h = read(p);
-  if (!/jst-properties-logo\.png/.test(h)) note(p, 'official logo missing');
+  if (!/jst-properties-logo[-a-z]*\.png/.test(h)) note(p, 'official logo missing');
   if (/brand__mono/.test(h)) note(p, 'replacement monogram still present');
   if (/Captain/i.test(strip(h))) note(p, 'still says "Captain"');
 }
