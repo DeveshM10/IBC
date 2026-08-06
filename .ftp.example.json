@@ -1,8 +1,11 @@
 {
-  "_comment": "Copy this to .ftp.json and fill it in. .ftp.json is gitignored and never leaves your machine.",
-  "host": "ftp.jstproperties.in",
+  "_comment": "Copy to .ftp.json and fill in. .ftp.json is gitignored and never leaves this machine.",
+  "_host_note": "ftp.jstproperties.in does not resolve yet. Use the server IP until DNS settles — ask Hitenbhai to confirm it. The old host answered on 66.96.145.109.",
+  "host": "66.96.145.109",
   "user": "devesh",
   "password": "PUT_IT_HERE",
-  "secure": true,
-  "remoteRoot": "/public_html"
+  "secure": false,
+  "_secure_note": "This server does not advertise AUTH TLS, so FTPS is unavailable and the password is sent in clear text. Ask whether SFTP on port 22 is available instead.",
+  "remoteRoot": "/public_html",
+  "_root_note": "Confirm with Hitenbhai. Common alternatives: /htdocs, /www, /public_html/jstproperties.in"
 }

@@ -17,6 +17,12 @@ const path = require('path');
 
 const DRY = process.argv.includes('--dry');
 
+// --code-only sends markup, styles, scripts and config but no media.
+// Useful for a first connection test. NOTE: the site will render without
+// its logo, photographs or favicons until the media is uploaded too.
+const CODE_ONLY = process.argv.includes('--code-only');
+const MEDIA = /\.(jpe?g|png|svg|gif|webp|pdf|mp4|ico|woff2?)$/i;
+
 // A dry run only lists files, so it needs neither the FTP client nor
 // credentials — you can check the manifest before setting anything up.
 let ftp, cfg;
@@ -68,10 +74,11 @@ function walk(dir, out = []) {
 const files = [
   ...INCLUDE_FILES.filter(f => fs.existsSync(f)),
   ...INCLUDE_DIRS.filter(d => fs.existsSync(d)).flatMap(d => walk(d))
-].filter(f => !NOT_ON_SERVER.has(f));
+].filter(f => !NOT_ON_SERVER.has(f))
+ .filter(f => !CODE_ONLY || !MEDIA.test(f));
 
 const bytes = files.reduce((n, f) => n + fs.statSync(f).size, 0);
-console.log(files.length + ' files, ' + (bytes / 1024 / 1024).toFixed(1) + ' MB');
+console.log(files.length + ' files, ' + (bytes / 1024 / 1024).toFixed(2) + ' MB' + (CODE_ONLY ? '   [code only — no media]' : ''));
 
 if (DRY) { files.forEach(f => console.log('  ' + f)); console.log('\nDry run — nothing uploaded.'); process.exit(0); }
 
