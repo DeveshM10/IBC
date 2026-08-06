@@ -1,0 +1,8 @@
+{
+  "_comment": "Copy this to .ftp.json and fill it in. .ftp.json is gitignored and never leaves your machine.",
+  "host": "ftp.jstproperties.in",
+  "user": "devesh",
+  "password": "PUT_IT_HERE",
+  "secure": true,
+  "remoteRoot": "/public_html"
+}
