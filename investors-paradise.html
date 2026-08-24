@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Investor's Paradise — Real Estate Strategy | JST Properties</title>
+<meta name="description" content="A new approach to selected real estate investment opportunities — created around the investor's real problems.">
+<link rel="canonical" href="https://www.jstproperties.in/investors-paradise">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#14201A">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JST Properties">
+<meta property="og:locale" content="en_IN">
+<meta property="og:url" content="https://www.jstproperties.in/investors-paradise">
+<meta property="og:title" content="Investor's Paradise | JST Properties">
+<meta property="og:description" content="Don't just buy real estate. Invest with a strategy.">
+<meta property="og:image" content="https://www.jstproperties.in/assets/og-estate.jpg">
+
+<link rel="icon" href="/favicon-jst.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon-jst.png" sizes="64x64">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/estate.css?v=14">
+<style>
+/* Custom styles for Investor's Paradise funnel */
+.ip-hero {
+  padding: 12rem var(--pad) 6rem;
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ip-hero .grain { mix-blend-mode: overlay; opacity: .15; }
+.ip-hero .h-display { font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 1rem; color: #fff; }
+.ip-hero .h-display em { color: var(--brick-lt); }
+.ip-hero .lede { margin: 1.5rem auto 3rem; color: rgba(255,255,255,.8); font-size: 1.3rem; }
+.ip-section { padding: 8rem 0; }
+.ip-section--alt { background: rgba(20,32,26,.03); }
+.ip-section--dark { background: var(--ink); color: #fff; }
+.ip-section--dark .section-index { color: var(--brick-lt); }
+.ip-section--dark .lede, .ip-section--dark p { color: rgba(255,255,255,.8); }
+.ip-section--dark .btn--outline { border-color: rgba(255,255,255,.3); color: #fff; }
+.ip-section--dark .btn--outline:hover { background: #fff; color: var(--ink); border-color: #fff; }
+.ip-text-center { text-align: center; }
+.ip-narrow { max-width: 800px; margin: 0 auto; padding-inline: var(--pad); }
+.ip-grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+@media (min-width: 768px) { .ip-grid-2 { grid-template-columns: 1fr 1fr; } }
+.ip-problem-box { padding: 2rem; border: 1px solid var(--rule); border-radius: 4px; background: #fff; transition: transform 0.3s; }
+.ip-problem-box:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.ip-problem-num { font-size: 2rem; font-weight: 600; color: var(--brick); margin-bottom: 0.5rem; font-family: 'Fraunces', serif; }
+.ip-problem-title { font-size: 1.2rem; font-weight: 500; margin-bottom: 1rem; }
+.ip-question-box { text-align: center; font-size: 1.5rem; font-style: italic; color: var(--brick-ink); margin: 2rem 0; padding: 2rem; border-left: 4px solid var(--brick); background: rgba(168, 85, 47, 0.05); }
+.ip-phase-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+.ip-phase { display: flex; gap: 2rem; align-items: flex-start; }
+.ip-phase-num { font-size: 1.5rem; font-weight: 600; color: var(--paper-2); border: 2px solid var(--paper-2); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ip-phase-content h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.ip-checklist { list-style: none; padding: 0; }
+.ip-checklist li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+.ip-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--brick); font-weight: bold; }
+.ip-checklist-cross { list-style: none; padding: 0; }
+.ip-checklist-cross li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+.ip-checklist-cross li::before { content: '×'; position: absolute; left: 0; color: #a00; font-weight: bold; font-size: 1.2rem; }
+.ip-comparison { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; }
+@media (min-width: 768px) { .ip-comparison { grid-template-columns: 1fr 1fr; } }
+.ip-comp-col { padding: 3rem; border-radius: 4px; }
+.ip-comp-col--old { background: #fff; border: 1px solid var(--rule); }
+.ip-comp-col--new { background: var(--ink); color: #fff; }
+.ip-comp-col--new h3 { color: var(--brick-lt); }
+.ip-flow { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; align-items: center; text-align: center; }
+.ip-flow-item { padding: 1rem 2rem; background: rgba(0,0,0,0.03); border-radius: 4px; width: 100%; max-width: 400px; font-weight: 500; }
+.ip-comp-col--new .ip-flow-item { background: rgba(255,255,255,0.05); }
+.ip-flow-arrow { color: var(--brick); font-size: 1.5rem; line-height: 1; }
+.ip-loc-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; }
+@media (min-width: 768px) { .ip-loc-grid { grid-template-columns: 1fr 1fr; } }
+.ip-loc-card { padding: 2.5rem; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
+.ip-loc-card h3 { font-family: 'Fraunces', serif; font-size: 1.8rem; margin-bottom: 1rem; color: var(--ink); }
+.ip-loc-card .eyebrow { margin-bottom: 0.5rem; }
+.ip-cta-big { padding: 8rem var(--pad); background: var(--brick-btn); color: #fff; text-align: center; }
+.ip-cta-big .h-display { color: #fff; margin-bottom: 2rem; }
+.ip-cta-big .btn--ghost { border-color: rgba(255,255,255,.5); }
+.ip-hni-box { background: var(--ink); color: var(--paper); padding: 4rem; border-radius: 4px; text-align: center; margin-top: 4rem; }
+.ip-hni-box h3 { font-family: 'Fraunces', serif; font-size: 2rem; margin-bottom: 1.5rem; color: var(--brick-lt); }
+.ip-hni-values { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin: 2rem 0; font-size: 1.5rem; font-weight: 300; }
+.ip-footer { text-align: center; padding: 4rem 2rem; background: var(--ink); color: rgba(255,255,255,.6); font-size: 0.85rem; }
+.ip-footer p { max-width: 800px; margin: 0 auto 1rem; }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="/" class="nav__brand">
+    <span class="nav__plate"><img src="/assets/jst-properties-logo-paper.png" alt="JST Properties" width="322" height="59"></span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="/our-story">Our Story</a>
+    <a href="/#segments">What we deal in</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#coverage">Where we work</a>
+    <a href="/#process">How we work</a>
+    <a href="/#developers">For developers</a>
+    <a href="/blog">Blog</a>
+  </nav>
+  <a href="/virtual-office" class="silo silo--vo"><span class="silo__k">Also from IBC</span><span class="silo__v">Virtual Office, Co-working <i aria-hidden="true">↗</i></span><span class="silo__d">IBC · GST address</span></a>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/our-story">Our Story</a>
+  <a href="/#segments">What we deal in</a>
+  <a href="/#projects">Projects</a>
+  <a href="/#coverage">Where we work</a>
+  <a href="/#process">How we work</a>
+  <a href="/#developers">For developers</a>
+  <a href="/blog">Blog</a>
+  <a href="/#contact">Contact</a>
+  <a href="/virtual-office" class="is-vo">Virtual Office → IBC</a>
+</div>
+
+<main id="content">
+
+<!-- HERO -->
+<section class="ip-hero">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap ip-narrow">
+    <p class="eyebrow reveal" style="color:var(--brick-lt);">JST Properties Presents</p>
+    <h1 class="h-display reveal">Investor's<br><em>Paradise</em></h1>
+    <h2 class="reveal" style="font-weight:400; font-size:1.8rem; margin:2rem 0 1rem;">The New Way to Think About Real Estate Investment</h2>
+    <p class="lede reveal">Don't just buy real estate. Invest with a strategy.</p>
+    
+    <div class="reveal" style="margin-top:3rem; padding-top:3rem; border-top:1px solid rgba(255,255,255,.1);">
+      <p style="font-size:1.1rem; margin-bottom:2rem; max-width:600px; margin-inline:auto;">
+        For years, real estate investors have followed the same formula: <br><br>
+        <span style="opacity:.6;">Buy → Hold → Wait → Find a Buyer → Exit</span><br><br>
+        But what if your investment strategy could be designed differently? What if the focus was not merely <em>"What property should I buy?"</em> but:
+      </p>
+      <div class="ip-question-box" style="background:rgba(255,255,255,.05); border-left-color:var(--brick-lt); color:#fff; border-radius:4px;">
+        "How intelligently can I enter, participate and eventually exit?"
+      </div>
+      <p style="margin-top:2rem;">A new approach to selected real estate investment opportunities—created around the investor's real problems, not simply around selling another property.</p>
+    </div>
+
+    <div class="reveal" style="margin-top:4rem;">
+      <a href="tel:+919327001929" class="btn btn--brick btn--lg" style="background:#fff; color:var(--ink);">Speak directly with our Investment Team</a>
+      <p style="margin-top:1rem; font-size:0.9rem; opacity:0.6;">Call 9327001929</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: THE REAL PROBLEM -->
+<section class="ip-section ip-section--alt">
+  <div class="wrap">
+    <div class="ip-text-center ip-narrow reveal">
+      <p class="section-index">02 — The Real Problem</p>
+      <h2 class="h-display">Buying a property is easy.<br><em>Getting your money out at the right time is the real challenge.</em></h2>
+      <p class="lede" style="margin:2rem auto;">
+        Ask any experienced real estate investor. The question isn't always <em>"Can I buy it?"</em> The bigger question is: <em>"When I want to exit, who will buy it—and at what price?"</em> That is where conventional real estate investment becomes complicated.
+      </p>
+    </div>
+
+    <div class="ip-grid-2 reveal" style="margin-top:4rem;">
+      <div class="ip-problem-box">
+        <div class="ip-problem-num">01</div>
+        <h3 class="ip-problem-title">Too Much Capital Gets Locked</h3>
+        <p>A conventional property purchase requires substantial capital upfront. Once invested, it remains locked for years. Meanwhile, another opportunity comes along, and your money is already committed.</p>
+      </div>
+      <div class="ip-problem-box">
+        <div class="ip-problem-num">02</div>
+        <h3 class="ip-problem-title">Transaction Costs Eat Into Returns</h3>
+        <p>The purchase price is not your actual investment cost. Stamp Duty + Registration + Taxes + Documentation all add up. For an investor focused on returns, every additional cost matters.</p>
+      </div>
+      <div class="ip-problem-box">
+        <div class="ip-problem-num">03</div>
+        <h3 class="ip-problem-title">Holding a Property Has a Cost</h3>
+        <p>Maintenance, taxes, upkeep, periodic visits, and administrative follow-up. The investor wanted an investment, but ends up managing an asset.</p>
+      </div>
+      <div class="ip-problem-box">
+        <div class="ip-problem-num">04</div>
+        <h3 class="ip-problem-title">Profit on Paper is Not Cash in Hand</h3>
+        <p>Your property may be worth more than what you paid. But until somebody actually buys it, the profit remains unrealised.</p>
+      </div>
+      <div class="ip-problem-box">
+        <div class="ip-problem-num">05</div>
+        <h3 class="ip-problem-title">Finding the Right Buyer is Your Problem</h3>
+        <p>When you want to sell, you must find brokers, advertise, negotiate, and wait. Sometimes the market simply isn't ready when you are ready to sell.</p>
+      </div>
+      <div class="ip-problem-box">
+        <div class="ip-problem-num">06</div>
+        <h3 class="ip-problem-title">Your Exit Depends on the Market</h3>
+        <p>The property and location may be excellent. But the timing of your exit is ultimately important. A successful investor thinks about exit strategy at the time of entry.</p>
+      </div>
+      <div class="ip-problem-box" style="grid-column: 1 / -1; background: var(--ink); color: var(--paper); border:none;">
+        <div class="ip-problem-num" style="color:var(--brick-lt);">07</div>
+        <h3 class="ip-problem-title">Your Next Opportunity May Arrive Before Your Current Exit</h3>
+        <p style="color:rgba(255,255,255,.8); max-width:800px;">This is the problem serious investors understand. You see another opportunity. You want to participate. But your capital is still locked into the previous property. <em>Opportunity cost is real.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 & 4: THE QUESTION JST ASKED -->
+<section class="ip-section">
+  <div class="wrap ip-narrow ip-text-center">
+    <p class="section-index reveal">03 — The JST Philosophy</p>
+    <h2 class="h-display reveal">What if we stop thinking like property <em>sellers</em>?</h2>
+    
+    <div class="reveal" style="margin:3rem 0;">
+      <p style="font-size:1.2rem;">Instead of starting with: <br><strong>"Which property can we sell you?"</strong></p>
+      <p style="font-size:1.2rem; margin-top:1rem;">We started asking: <br><strong style="color:var(--brick-ink);">"What problems does a real estate investor face after buying?"</strong></p>
+    </div>
+    
+    <p class="lede reveal" style="margin:0 auto;">
+      That simple question changed the way we approached real estate investment. And it led us towards a different philosophy.
+    </p>
+  </div>
+</section>
+
+<section class="ip-section ip-section--dark">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="ip-text-center ip-narrow reveal">
+      <p class="section-index">04 — Introducing Investor's Paradise</p>
+      <h2 class="h-display" style="color:#fff;">A Real Estate Investment Philosophy Designed Around the <em>Investor</em></h2>
+      <div class="ip-question-box" style="background:none; border:none; margin-bottom:1rem; padding-bottom:0;">
+        <span style="color:#fff; font-style:normal;">Don't design the investment only around ENTRY.</span><br>
+        <span style="color:var(--brick-lt);">Think about ENTRY + HOLDING + EXIT.</span>
+      </div>
+    </div>
+    
+    <div class="ip-narrow reveal" style="margin-top:4rem;">
+      <p>Our objective is to identify opportunities where an investor may participate at an appropriate stage of a project and where the overall structure can be designed with the investor's eventual exit in mind.</p>
+      <p style="margin-top:1.5rem;">This means looking beyond today's price. We study:</p>
+      <ul class="ip-checklist" style="margin-top:1.5rem; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+        <li>The project</li>
+        <li>The developer</li>
+        <li>The location</li>
+        <li>The development stage</li>
+        <li>The future demand</li>
+        <li>The investor's capital exposure</li>
+        <li style="grid-column:1/-1; color:var(--brick-lt);">And the possible exit pathway.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: WHAT MAKES THIS DIFFERENT -->
+<section class="ip-section">
+  <div class="wrap ip-narrow">
+    <p class="section-index reveal ip-text-center">05 — What Makes This Different?</p>
+    <h2 class="h-display reveal ip-text-center">You are not being asked to think like an <em>end user</em>.</h2>
+    
+    <div class="ip-comparison reveal">
+      <div class="ip-comp-col ip-comp-col--old">
+        <h3 style="font-size:1.1rem; color:var(--brick-ink); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem;">An End User Says:</h3>
+        <p style="font-size:1.4rem; font-family:'Fraunces', serif;">"I love this property. I want to own it."</p>
+      </div>
+      <div class="ip-comp-col ip-comp-col--old" style="background:var(--paper-2); border:none;">
+        <h3 style="font-size:1.1rem; color:var(--ink); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem;">A Real Estate Investor Says:</h3>
+        <p style="font-size:1.4rem; font-family:'Fraunces', serif;">"At what stage should I enter, how much capital should I deploy, and what is my strategy for exiting?"</p>
+      </div>
+    </div>
+    <p class="reveal ip-text-center" style="margin-top:3rem; font-size:1.2rem;">These are two completely different mindsets. And we believe they deserve <strong>two different strategies</strong>.</p>
+  </div>
+</section>
+
+<!-- SECTION 6: THE JST INVESTOR-FIRST APPROACH -->
+<section class="ip-section ip-section--alt">
+  <div class="wrap">
+    <div class="ip-text-center ip-narrow reveal">
+      <p class="section-index">06 — The Approach</p>
+      <h2 class="h-display">Investor First.<br><em>End User Next.</em></h2>
+      <p class="lede" style="margin:1.5rem auto;">In selected opportunities, JST Properties works around an investor-first market approach.</p>
+    </div>
+
+    <div class="ip-phase-list ip-narrow reveal">
+      <div class="ip-phase">
+        <div class="ip-phase-num">1</div>
+        <div class="ip-phase-content">
+          <p class="eyebrow">Phase 1</p>
+          <h3>Identify the Opportunity Early</h3>
+          <p>Before an opportunity becomes widely available to the general market, selected investors may be given an opportunity to participate. The attraction? <em>Early-stage positioning.</em></p>
+        </div>
+      </div>
+      <div class="ip-phase">
+        <div class="ip-phase-num">2</div>
+        <div class="ip-phase-content">
+          <p class="eyebrow">Phase 2</p>
+          <h3>Build the Investor Community</h3>
+          <p>Rather than depending entirely on traditional retail property sales, we work to build a network of investors who understand the opportunity and participate according to the applicable project structure.</p>
+        </div>
+      </div>
+      <div class="ip-phase">
+        <div class="ip-phase-num">3</div>
+        <div class="ip-phase-content">
+          <p class="eyebrow">Phase 3</p>
+          <h3>Move Towards the End-User Market</h3>
+          <p>As the project progresses, the market naturally expands. The same underlying real estate can eventually become relevant to people looking for homes, weekend residences, lifestyle properties, and long-term land holdings.</p>
+        </div>
+      </div>
+      <div class="ip-phase">
+        <div class="ip-phase-num" style="background:var(--ink); color:#fff; border-color:var(--ink);">4</div>
+        <div class="ip-phase-content">
+          <p class="eyebrow" style="color:var(--brick-ink);">Phase 4</p>
+          <h3>Create a Structured Exit Environment</h3>
+          <p>This is where Investor's Paradise is fundamentally different. We don't want the investor to simply reach the end of the investment period and hear: <em>"Now find a buyer."</em> The objective is to create a coordinated market environment where investor exits can be considered alongside the project's progression and end-user demand.</p>
+          <p style="font-size:0.9rem; opacity:0.8; margin-top:1rem; font-style:italic;">The exact exit mechanism varies from project to project and is explained privately to eligible investors.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: WHAT WE DON'T PUT ON THE WEBSITE -->
+<section class="ip-section">
+  <div class="wrap ip-narrow reveal">
+    <p class="section-index">07 — Transparency</p>
+    <h2 class="h-display">What we deliberately <em>don't</em> put on the website.</h2>
+    <p class="lede" style="margin-top:1.5rem;">Because serious investments deserve serious conversations.</p>
+    
+    <p style="margin-top:2rem;">You won't find every number, formula, agreement structure and commercial mechanism on this page. And that's intentional. We don't believe sophisticated investors should make decisions based on a two-line WhatsApp message promising extraordinary returns.</p>
+    
+    <div style="background:var(--paper-2); padding:3rem; border-radius:4px; margin-top:3rem;">
+      <h3 style="font-family:'Fraunces', serif; font-size:1.5rem; margin-bottom:1.5rem;">The detailed private discussion includes:</h3>
+      <ul class="ip-checklist" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1rem;">
+        <li>Investment amount</li>
+        <li>Project-specific pricing</li>
+        <li>Payment structure</li>
+        <li>Applicable agreements</li>
+        <li>Investor participation structure</li>
+        <li>Exit mechanism</li>
+        <li>Project timelines</li>
+        <li>Developer obligations</li>
+        <li>Applicable documentation</li>
+        <li>Legal and regulatory considerations</li>
+        <li>Group participation opportunities</li>
+        <li>Larger strategic participation</li>
+      </ul>
+      <p style="margin-top:2rem; font-style:italic; font-weight:500;">These are discussed person-to-person, after understanding the investor's profile and the specific opportunity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8, 9, 10: LAND & LOCATION -->
+<section class="ip-section ip-section--dark">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="ip-narrow ip-text-center reveal">
+      <p class="section-index" style="color:var(--brick-lt);">08 — The Asset Class</p>
+      <h2 class="h-display" style="color:#fff;">Why <em>Land?</em></h2>
+      <p class="lede" style="margin:1.5rem auto;">Because land is different. Buildings age. Interiors become outdated. Maintenance requirements increase. But strategically located land participates in the broader development of the surrounding region.</p>
+      <p>That doesn't mean every piece of land will appreciate. It means the <em>right location at the right stage</em> deserves serious consideration. And this is where our location strategy becomes important.</p>
+    </div>
+
+    <div class="reveal" style="margin-top:6rem;">
+      <p class="section-index ip-text-center" style="color:var(--brick-lt);">09 — The Location Story</p>
+      <h2 class="h-display ip-text-center" style="color:#fff; font-size:clamp(1.5rem, 3vw, 3rem);">Nal Sarovar • Sanand • Ahmedabad • Dholera</h2>
+      <p class="ip-text-center" style="font-size:1.5rem; color:var(--brick-lt); font-family:'Fraunces', serif; margin-top:1rem;">One Opportunity. Multiple Growth Narratives.</p>
+      
+      <div class="ip-loc-grid">
+        <div class="ip-loc-card">
+          <p class="eyebrow">Tourism Ecosystem</p>
+          <h3>Nal Sarovar</h3>
+          <p style="color:var(--txt);">As tourism infrastructure and accessibility evolve, locations around established attractions gain attention. The question is: <em>"What happens to surrounding real estate when accessibility, tourism and development improve?"</em></p>
+        </div>
+        <div class="ip-loc-card">
+          <p class="eyebrow">Industrial Ecosystem</p>
+          <h3>Sanand</h3>
+          <p style="color:var(--txt);">From industrial location to industrial ecosystem. The presence of manufacturing creates an ecosystem that brings businesses, employees, and services. And real estate tends to follow economic activity.</p>
+        </div>
+        <div class="ip-loc-card">
+          <p class="eyebrow">Connectivity Story</p>
+          <h3>Dholera</h3>
+          <p style="color:var(--txt);">The Ahmedabad–Dholera corridor is being strengthened by major infrastructure initiatives. Connectivity changes accessibility. Accessibility influences development. Development attracts economic activity. Economic activity creates demand.</p>
+        </div>
+        <div class="ip-loc-card">
+          <p class="eyebrow">Urban Expansion</p>
+          <h3>Ahmedabad</h3>
+          <p style="color:var(--txt);">A city thinking beyond its present. Positioning itself for a much larger national and international role (Commonwealth 2030, Olympic aspirations 2036). Major global aspirations require new real estate.</p>
+        </div>
+      </div>
+      
+      <div class="ip-text-center reveal" style="margin-top:4rem;">
+        <h3 style="font-family:'Fraunces', serif; font-size:2rem; color:var(--brick-lt);">Why we are watching this belt</h3>
+        <p style="max-width:800px; margin:1rem auto; font-size:1.2rem;">When tourism, industry, infrastructure, future development, urban expansion, and international aspirations converge around a region… <strong>Real estate deserves attention.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: THE INVESTOR'S QUESTION -->
+<section class="ip-section">
+  <div class="wrap ip-narrow ip-text-center reveal">
+    <p class="section-index">11 — The Investor's Question</p>
+    <h2 class="h-display">"But how do I make money?"</h2>
+    <p class="lede" style="margin:2rem auto;">That's not the first question we want you to ask. We want you to ask five better questions:</p>
+    
+    <div style="font-family:'Fraunces', serif; font-size:1.5rem; color:var(--ink); line-height:2.5; margin:3rem 0; text-align:left; max-width:500px; margin-inline:auto;">
+      1. <span style="color:var(--brick-ink);">Why this location?</span><br>
+      2. <span style="color:var(--brick-ink);">Why this project?</span><br>
+      3. <span style="color:var(--brick-ink);">Why this stage?</span><br>
+      4. <span style="color:var(--brick-ink);">How much capital should I commit?</span><br>
+      5. <span style="color:var(--brick-ink);">What is the proposed exit strategy?</span>
+    </div>
+    
+    <p style="font-size:1.2rem; font-weight:500;">Only after answering these questions should we talk about potential returns.</p>
+  </div>
+</section>
+
+<!-- SECTION 12 & 13: CAPITAL EFFICIENCY & DIFFERENCE -->
+<section class="ip-section ip-section--alt">
+  <div class="wrap reveal">
+    <div class="ip-narrow ip-text-center">
+      <p class="section-index">12 — Capital Efficiency</p>
+      <h2 class="h-display">Do you really need to own <em>100%</em> to participate in an opportunity?</h2>
+      <p class="lede" style="margin:2rem auto;">One of the central ideas behind our investor-oriented approach is to examine whether investors can participate in selected opportunities through a defined capital commitment rather than simply purchasing and funding the entire underlying asset from day one.</p>
+      <div class="ip-question-box">
+        Your entire capital should not automatically have to be locked simply because the underlying property has a larger value.
+      </div>
+      <p>This can potentially help an investor: <strong>Preserve liquidity • Diversify participation • Access opportunities earlier • Remain ready for the next opportunity</strong>. The actual structure must always be evaluated project-by-project.</p>
+    </div>
+
+    <div class="ip-comparison reveal" style="margin-top:6rem;">
+      <div class="ip-comp-col ip-comp-col--old">
+        <h3 class="ip-text-center" style="font-family:'Fraunces', serif; font-size:1.5rem; margin-bottom:2rem;">Conventional Property Investment</h3>
+        <div class="ip-flow">
+          <div class="ip-flow-item">Buy 100%</div>
+          <div class="ip-flow-arrow">↓</div>
+          <div class="ip-flow-item">Pay transaction costs</div>
+          <div class="ip-flow-arrow">↓</div>
+          <div class="ip-flow-item">Hold the property</div>
+          <div class="ip-flow-arrow">↓</div>
+          <div class="ip-flow-item">Maintain the property</div>
+          <div class="ip-flow-arrow">↓</div>
+          <div class="ip-flow-item">Wait for appreciation</div>
+          <div class="ip-flow-arrow">↓</div>
+          <div class="ip-flow-item">Find a buyer</div>
+          <div class="ip-flow-arrow">↓</div>
+          <div class="ip-flow-item">Negotiate</div>
+          <div class="ip-flow-arrow">↓</div>
+          <div class="ip-flow-item">Exit</div>
+        </div>
+      </div>
+      
+      <div class="ip-comp-col ip-comp-col--new">
+        <h3 class="ip-text-center" style="font-family:'Fraunces', serif; font-size:1.5rem; margin-bottom:2rem;">Investor's Paradise Philosophy</h3>
+        <div class="ip-flow">
+          <div class="ip-flow-item">Identify opportunity</div>
+          <div class="ip-flow-arrow" style="color:var(--brick-lt);">↓</div>
+          <div class="ip-flow-item">Assess project & location</div>
+          <div class="ip-flow-arrow" style="color:var(--brick-lt);">↓</div>
+          <div class="ip-flow-item">Determine appropriate capital participation</div>
+          <div class="ip-flow-arrow" style="color:var(--brick-lt);">↓</div>
+          <div class="ip-flow-item">Enter at the relevant stage</div>
+          <div class="ip-flow-arrow" style="color:var(--brick-lt);">↓</div>
+          <div class="ip-flow-item">Monitor development</div>
+          <div class="ip-flow-arrow" style="color:var(--brick-lt);">↓</div>
+          <div class="ip-flow-item">Build end-user market</div>
+          <div class="ip-flow-arrow" style="color:var(--brick-lt);">↓</div>
+          <div class="ip-flow-item">Plan the exit</div>
+          <div class="ip-flow-arrow" style="color:var(--brick-lt);">↓</div>
+          <div class="ip-flow-item" style="background:var(--brick-btn);">Re-deploy capital into the next opportunity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 14 & 15: RELATIONSHIPS & HNIs -->
+<section class="ip-section">
+  <div class="wrap reveal">
+    <div class="ip-narrow ip-text-center">
+      <h2 class="h-display">We want to build investor <em>relationships</em>, not one-time sales.</h2>
+      <p class="lede" style="margin:2rem auto;">Imagine an investor who participates in one opportunity with us. Then exits successfully according to the applicable structure. Then returns for the next opportunity. Then participates in a larger opportunity. Then perhaps joins with other investors.</p>
+      
+      <div style="font-family:'Fraunces', serif; font-size:2rem; color:var(--brick-ink); margin:3rem 0;">
+        One investor.<br>Multiple opportunities.<br>Long-term relationship.
+      </div>
+      
+      <p style="font-size:1.3rem;">Because the best business is not: "Sell once."<br>The best business is: <strong>"Earn trust. And keep the investor with you."</strong></p>
+    </div>
+
+    <div class="ip-hni-box reveal">
+      <p class="eyebrow" style="color:rgba(255,255,255,.5);">For HNIs & Group Investors</p>
+      <h3>The Opportunity Can Become Much Bigger.</h3>
+      <p style="font-size:1.2rem; color:rgba(255,255,255,.8);">Not every investor wants a ₹5 lakh or ₹10 lakh opportunity. Some investors think in:</p>
+      <div class="ip-hni-values">
+        <span>₹1 Crore</span><span>•</span>
+        <span>₹5 Crore</span><span>•</span>
+        <span>₹10 Crore</span><span>•</span>
+        <span>₹25 Crore+</span>
+      </div>
+      <p style="margin-bottom:2rem; color:rgba(255,255,255,.8);">For larger investors and investor groups, selected projects may open discussions beyond conventional individual investment.</p>
+      
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; text-align:left; margin-top:3rem;">
+        <div>
+          <h4 style="color:var(--brick-lt); margin-bottom:0.5rem;">Group Investment</h4>
+          <p style="font-size:0.9rem; color:rgba(255,255,255,.7);">Multiple investors can explore participation together, subject to the structure and project terms.</p>
+        </div>
+        <div>
+          <h4 style="color:var(--brick-lt); margin-bottom:0.5rem;">Bulk Participation</h4>
+          <p style="font-size:0.9rem; color:rgba(255,255,255,.7);">Larger capital deployment can create a different commercial conversation with the development side.</p>
+        </div>
+        <div>
+          <h4 style="color:var(--brick-lt); margin-bottom:0.5rem;">Strategic Development</h4>
+          <p style="font-size:0.9rem; color:rgba(255,255,255,.7);">Where the right land, developer, capital and project opportunity come together, a large investor group may explore becoming a strategic development/joint-development partner.</p>
+        </div>
+      </div>
+      <p style="margin-top:3rem; font-style:italic; color:var(--paper-2);">This is not a retail product. It is a private discussion for serious HNIs, family offices, investor groups and strategic capital partners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 16: THIS IS NOT FOR EVERYONE -->
+<section class="ip-section ip-section--alt">
+  <div class="wrap ip-narrow reveal">
+    <h2 class="h-display ip-text-center">This is <em>not</em> for everyone.<br><span style="font-size:0.6em; font-family:'Inter Tight', sans-serif; font-weight:400;">And That's Okay.</span></h2>
+    
+    <div class="ip-grid-2" style="margin-top:4rem;">
+      <div style="background:#fff; padding:2rem; border-radius:4px; border:1px solid var(--rule);">
+        <h3 style="margin-bottom:1.5rem;">Investor's Paradise may not be suitable for someone looking for:</h3>
+        <ul class="ip-checklist-cross">
+          <li>A ready-to-move house</li>
+          <li>A property for immediate personal use</li>
+          <li>Guaranteed appreciation</li>
+          <li>A quick speculative trade</li>
+          <li>A product without documentation</li>
+          <li>A "double your money" WhatsApp promise</li>
+        </ul>
+      </div>
+      <div style="background:var(--paper-2); padding:2rem; border-radius:4px;">
+        <h3 style="margin-bottom:1.5rem;">We are looking for investors who understand:</h3>
+        <ul class="ip-checklist" style="font-weight:500;">
+          <li>Real estate is a long-term game.</li>
+          <li>Location matters.</li>
+          <li>Timing matters.</li>
+          <li>Structure matters.</li>
+          <li>Documentation matters.</li>
+          <li>Exit matters.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 17 & 18: WHY JST & PRIVATE BRIEFING -->
+<section class="ip-section">
+  <div class="wrap reveal">
+    <div class="ip-narrow ip-text-center">
+      <p class="section-index">17 — Why JST Properties?</p>
+      <h2 class="h-display">We don't just want to show you <em>property</em>.</h2>
+      <p class="lede" style="margin:2rem auto;">We want to understand your investment objective. Your answers determine which opportunity may be relevant to you.</p>
+    </div>
+
+    <div class="ip-narrow" style="margin-top:4rem; padding:3rem; background:rgba(0,0,0,0.02); border:1px solid var(--rule); border-radius:4px;">
+      <p class="section-index ip-text-center">18 — The Private Investor Briefing</p>
+      <h3 class="ip-text-center" style="font-family:'Fraunces', serif; font-size:2rem; margin-bottom:2rem; color:var(--ink);">Some opportunities are better explained face-to-face.</h3>
+      <p class="ip-text-center" style="margin-bottom:2rem;">We have deliberately kept the most important commercial details out of this website. Because once we reveal every number publicly, an investor sees a product. We want you to understand the <em>strategy</em> first.</p>
+      
+      <p class="ip-text-center" style="font-weight:500; margin-bottom:1.5rem;">During a private discussion, we can explain:</p>
+      <ul class="ip-checklist" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem 2rem;">
+        <li>The opportunity</li>
+        <li>The developer</li>
+        <li>The land</li>
+        <li>The project</li>
+        <li>The entry structure</li>
+        <li>The investment amount</li>
+        <li>The applicable agreements</li>
+        <li>The proposed exit</li>
+        <li>The risks</li>
+        <li>The documentation</li>
+        <li>The applicable timelines</li>
+        <li>The larger possibilities</li>
+      </ul>
+      <div class="ip-text-center" style="margin-top:3rem; font-style:italic; font-family:'Fraunces',serif; font-size:1.2rem; color:var(--brick-ink);">
+        And then you decide. No pressure. No forced booking. No decision without understanding.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 19: NEXT INVESTMENT -->
+<section class="ip-section ip-section--dark">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap ip-narrow ip-text-center reveal">
+    <h2 class="h-display" style="color:#fff;">Your next real estate investment may not be the property everyone is talking about <em>today</em>.</h2>
+    <p class="lede" style="margin:2rem auto; color:rgba(255,255,255,.8);">It may be the opportunity that is being quietly developed today… before everyone starts talking about it tomorrow.</p>
+    
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; margin:3rem 0; color:var(--brick-lt); font-size:1.1rem; font-weight:500;">
+      <span>A new road.</span> • 
+      <span>A new industrial cluster.</span> • 
+      <span>A new tourism destination.</span> • 
+      <span>A new airport.</span> • 
+      <span>A new railway.</span> • 
+      <span>A new city.</span> • 
+      <span>A new demand centre.</span>
+    </div>
+    
+    <p style="font-size:1.3rem; margin-top:2rem;">Real estate investors make money not merely because something becomes valuable. They make money because they <strong>position themselves intelligently before value becomes obvious.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 20: FINAL CTA -->
+<section class="ip-cta-big" id="contact">
+  <div class="wrap ip-narrow reveal">
+    <p class="eyebrow" style="color:rgba(255,255,255,.7);">Before you buy another property…</p>
+    <h2 class="h-display">Ask yourself one question:<br><br><span style="font-style:italic; color:var(--paper);">"What is my exit strategy?"</span></h2>
+    <p class="lede" style="margin:2rem auto; color:rgba(255,255,255,.9);">If you don't have a satisfactory answer… perhaps you should have a conversation with us first.</p>
+    
+    <div style="background:rgba(0,0,0,0.15); padding:3rem; border-radius:4px; margin:4rem 0;">
+      <p class="eyebrow" style="color:rgba(255,255,255,.6);">Welcome to</p>
+      <h3 style="font-family:'Fraunces', serif; font-size:2.5rem; margin-bottom:1rem;">Investor's Paradise</h3>
+      <p style="margin-bottom:2rem;">A JST Properties initiative for investors who want to think beyond simply buying real estate.</p>
+      <div style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem 1rem; opacity:0.8;">
+        <span>Land Investment</span>
+        <span>Strategic Opportunities</span>
+        <span>Group Investment</span>
+        <span>HNI Participation</span>
+        <span>Joint Development</span>
+      </div>
+    </div>
+    
+    <h3 style="font-family:'Fraunces', serif; font-size:2rem; margin-bottom:1rem;">Talk to us privately</h3>
+    <a href="tel:+919327001929" style="font-size:3rem; font-weight:300; display:block; margin-bottom:2rem; text-decoration:none; color:#fff;">93270 01929</a>
+    
+    <div style="display:flex; flex-direction:column; gap:1rem; align-items:center;">
+      <a href="tel:+919327001929" class="btn btn--lg" style="background:#fff; color:var(--brick-btn); width:100%; max-width:400px;">Speak to an Investment Specialist</a>
+      <a href="https://wa.me/919327001929?text=Hello%20JST%20Properties%2C%20I%20would%20like%20to%20request%20a%20Private%20Investor%20Briefing%20regarding%20Investor's%20Paradise." target="_blank" rel="noopener" class="btn btn--lg" style="background:var(--ink); color:#fff; width:100%; max-width:400px; border-color:var(--ink);">Request Private Investor Briefing</a>
+      <a href="https://wa.me/919327001929" target="_blank" rel="noopener" class="btn btn--ghost btn--lg" style="width:100%; max-width:400px;">WhatsApp 9327001929</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="ip-footer">
+  <div class="wrap">
+    <h4 style="font-family:'Fraunces', serif; font-size:1.5rem; color:#fff; margin-bottom:0.5rem;">Investor's Paradise — JST Properties</h4>
+    <p style="font-style:italic; font-size:1.1rem; color:var(--brick-lt); margin-bottom:3rem;">Think beyond purchase. Think strategy. Think exit.</p>
+    
+    <p>Real estate investments are subject to market, legal, regulatory, project, liquidity and execution risks. Infrastructure development, location growth, tourism activity or industrial development does not guarantee appreciation of any particular property.</p>
+    <p>All investment structures, returns, exit mechanisms, timelines, pricing, agreements and participation terms are project-specific and subject to applicable documentation, approvals, due diligence and legal/regulatory requirements.</p>
+    <p style="font-style:italic; color:rgba(255,255,255,.8);">Nothing on this website constitutes a guarantee of investment returns or future property values. Investors should independently evaluate the opportunity and obtain appropriate professional/legal advice before making an investment decision.</p>
+    
+    <p style="margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,.1);">© 2026 JST Properties. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/919327001929" class="fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.896 9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.945c0 2.096.549 4.142 1.593 5.945L0 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.585 0 11.946-5.359 11.949-11.945a11.87 11.87 0 0 0-3.421-8.4"/></svg>
+</a>
+
+<script src="/js/estate.js?v=13"></script>
+</body>
+</html>
