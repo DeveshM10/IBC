@@ -203,6 +203,38 @@
   </div>
 </section>
 
+<!-- SECTION 2.5: THE DATA -->
+<section class="ip-section" style="background:#fff; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);">
+  <div class="wrap ip-narrow">
+    <div class="ip-text-center reveal">
+      <p class="section-index">The Numbers</p>
+      <h2 class="h-display">Projected Value Matrix for Strategic Corridors</h2>
+      <p class="lede" style="margin:1rem auto 3rem;">A look at how early-stage entry positions traditionally outperform standard fixed-yield assets over a 3-5 year horizon.</p>
+    </div>
+    
+    <div class="reveal" style="position:relative; width:100%; max-width:800px; margin:0 auto 4rem;">
+      <canvas id="roiChart" width="800" height="400"></canvas>
+    </div>
+    
+    <div class="ip-grid-2 reveal" style="gap:2rem;">
+      <div style="background:var(--ink); color:#fff; padding:2.5rem; border-radius:4px; text-align:center;">
+        <div style="font-size:3rem; font-family:'Fraunces', serif; color:var(--brick-lt); margin-bottom:0.5rem; font-weight:600;">18-24%</div>
+        <div style="font-size:1.1rem; font-weight:500;">Historical Annualized Growth</div>
+        <p style="opacity:0.8; font-size:0.9rem; margin-top:0.5rem;">In strategic zones around West Ahmedabad & Dholera when entered at pre-launch stages.</p>
+      </div>
+      
+      <div style="background:#f8f6f0; border:1px solid var(--rule); padding:2.5rem; border-radius:4px; text-align:center;">
+        <div style="font-size:3rem; font-family:'Fraunces', serif; color:var(--brick); margin-bottom:0.5rem; font-weight:600;">3-5 Yrs</div>
+        <div style="font-size:1.1rem; font-weight:500;">Defined Exit Horizon</div>
+        <p style="opacity:0.8; font-size:0.9rem; margin-top:0.5rem;">The optimal sweet-spot for maximizing capital appreciation before the project peaks.</p>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center; margin-top:2rem; font-size:0.8rem; opacity:0.6;">
+      *Disclaimer: Graphs and figures are for illustrative purposes based on historical data of strategic land appreciation versus traditional 7% fixed deposits. Real estate investments carry market risks and past performance does not guarantee future returns.
+    </div>
+  </div>
+</section>
+
 <!-- SECTION 3 & 4: THE QUESTION JST ASKED -->
 <section class="ip-section">
   <div class="wrap ip-narrow ip-text-center">
@@ -656,5 +688,83 @@
 </a>
 
 <script src="/js/estate.js?v=13"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('roiChart').getContext('2d');
+    
+    // Create gradient for the real estate line
+    const gradientRE = ctx.createLinearGradient(0, 0, 0, 400);
+    gradientRE.addColorStop(0, 'rgba(168, 85, 47, 0.5)'); // --brick
+    gradientRE.addColorStop(1, 'rgba(168, 85, 47, 0.0)');
+    
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Year 0 (Entry)', 'Year 1', 'Year 2', 'Year 3 (Optimal)', 'Year 4', 'Year 5 (Horizon)'],
+        datasets: [
+          {
+            label: 'Strategic Real Estate Entry',
+            data: [100, 122, 148, 185, 210, 245],
+            borderColor: '#a8552f', // --brick
+            backgroundColor: gradientRE,
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#a8552f',
+            pointRadius: 5,
+            pointHoverRadius: 8
+          },
+          {
+            label: 'Traditional Fixed Deposit (7%)',
+            data: [100, 107, 114, 122, 131, 140],
+            borderColor: '#555',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            fill: false,
+            tension: 0,
+            pointBackgroundColor: '#555',
+            pointRadius: 4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              font: { family: "'Inter Tight', sans-serif", size: 13 }
+            }
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            backgroundColor: '#14201A',
+            titleFont: { family: "'Inter Tight', sans-serif", size: 14 },
+            bodyFont: { family: "'Inter Tight', sans-serif", size: 13 },
+            padding: 12
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            title: { display: true, text: 'Value Index (Base 100)', font: { family: "'Inter Tight', sans-serif" } },
+            grid: { color: 'rgba(0,0,0,0.05)' }
+          },
+          x: {
+            grid: { display: false }
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        }
+      }
+    });
+  });
+</script>
 </body>
 </html>
