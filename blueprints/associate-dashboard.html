@@ -118,6 +118,7 @@
             <th>Mobile (Masked)</th>
             <th>Project Interest</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -177,6 +178,39 @@
   </div>
 </div>
 
+<!-- Activity Log Modal -->
+<div id="activity-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:100; align-items:center; justify-content:center;">
+  <div style="background:#fff; width:100%; max-width:400px; padding:2rem; border-radius:8px;">
+    <h3 style="margin-bottom:1rem; font-family:'Fraunces', serif; color:var(--ink);">Log Activity</h3>
+    <input type="hidden" id="activity-lead-id">
+    
+    <div style="margin-bottom:1rem;">
+      <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Type</label>
+      <select id="activity-type" style="width:100%; padding:0.5rem; border:1px solid var(--rule); border-radius:4px;">
+        <option value="call">Phone Call</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="email">Email</option>
+        <option value="meeting">In-Person Meeting</option>
+      </select>
+    </div>
+    
+    <div style="margin-bottom:1rem;">
+      <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Duration / Info</label>
+      <input type="text" id="activity-duration" placeholder="e.g. 15 mins" style="width:100%; padding:0.5rem; border:1px solid var(--rule); border-radius:4px;">
+    </div>
+    
+    <div style="margin-bottom:1.5rem;">
+      <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Notes</label>
+      <textarea id="activity-notes" rows="3" placeholder="Summary of interaction..." style="width:100%; padding:0.5rem; border:1px solid var(--rule); border-radius:4px; font-family:inherit;"></textarea>
+    </div>
+    
+    <div style="display:flex; gap:1rem; justify-content:flex-end;">
+      <button onclick="closeActivityModal()" style="background:none; border:none; cursor:pointer; font-weight:500;">Cancel</button>
+      <button id="btn-save-activity" onclick="saveActivity()" class="btn btn--brick" style="padding:0.5rem 1rem;">Save Log</button>
+    </div>
+  </div>
+</div>
+
 <!-- Load Supabase JS -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
@@ -214,6 +248,7 @@
               <td>${lead.masked_mobile}</td>
               <td>${lead.source || 'N/A'}</td>
               <td><span class="badge badge--info">${attr.status}</span></td>
+              <td><button onclick="openActivityModal('${lead.id}')" style="background:#f0f2f5; border:1px solid var(--rule); padding:0.3rem 0.6rem; border-radius:4px; cursor:pointer; font-size:0.8rem;">Log Activity</button></td>
             </tr>`;
             leadsBody.innerHTML += row;
           });
@@ -226,6 +261,54 @@
       
     } catch(err) {
       console.error("Dashboard error:", err);
+    }
+  }
+  
+  function openActivityModal(leadId) {
+    document.getElementById('activity-lead-id').value = leadId;
+    document.getElementById('activity-type').value = 'call';
+    document.getElementById('activity-duration').value = '';
+    document.getElementById('activity-notes').value = '';
+    document.getElementById('activity-modal').style.display = 'flex';
+  }
+  
+  function closeActivityModal() {
+    document.getElementById('activity-modal').style.display = 'none';
+  }
+  
+  async function saveActivity() {
+    const btn = document.getElementById('btn-save-activity');
+    btn.innerText = 'Saving...';
+    btn.disabled = true;
+    
+    const leadId = document.getElementById('activity-lead-id').value;
+    const type = document.getElementById('activity-type').value;
+    const duration = document.getElementById('activity-duration').value;
+    const notes = document.getElementById('activity-notes').value;
+    
+    try {
+      const session = await supabase.auth.getSession();
+      const userId = session.data.session.user.id;
+      
+      const { error } = await supabase.from('lead_activities').insert([
+        {
+          lead_id: leadId,
+          user_id: userId,
+          activity_type: type,
+          duration: duration,
+          notes: notes
+        }
+      ]);
+      
+      if (error) throw error;
+      alert("Activity Logged Successfully!");
+      closeActivityModal();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save activity.");
+    } finally {
+      btn.innerText = 'Save Log';
+      btn.disabled = false;
     }
   }
 
