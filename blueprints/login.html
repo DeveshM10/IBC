@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Login | JST Investor's Paradise</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/estate.css">
+<style>
+  body { background: #f8f6f0; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Inter Tight', sans-serif; }
+  .login-box { background: #fff; width: 100%; max-width: 400px; padding: 2.5rem; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+  .login-logo { display: block; margin: 0 auto 2rem; max-width: 200px; }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--ink); }
+  .form-control { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--rule); border-radius: 4px; font-family: inherit; font-size: 1rem; }
+  .form-control:focus { outline: none; border-color: var(--brick); }
+  .btn-login { width: 100%; display: block; text-align: center; }
+  
+  .error-message { background: #ffebee; color: #c62828; padding: 0.8rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.9rem; display: none; }
+</style>
+</head>
+<body>
+
+<div class="login-box">
+  <img src="../assets/jst-properties-logo.png" alt="JST Properties" class="login-logo">
+  <h2 style="text-align:center; font-family:'Fraunces', serif; color:var(--ink); margin-bottom:2rem;">Portal Access</h2>
+  
+  <div class="error-message" id="error-msg">Invalid email or password.</div>
+  
+  <div class="form-group">
+    <label class="form-label">Mobile Number</label>
+    <div style="display:flex; gap:0.5rem;">
+      <input type="text" class="form-control" value="+91" style="width:70px; text-align:center; background:#f0f2f5; color:var(--txt);" readonly>
+      <input type="text" id="mobile" class="form-control" placeholder="10-digit registered number" maxlength="10" required>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+    <div style="font-size:0.8rem; color:var(--txt); margin-top:0.4rem;">Logging in for the first time? The password you enter will become your permanent password.</div>
+  </div>
+  
+  <button class="btn btn--brick btn-login" onclick="handleAuth()">Secure Login</button>
+  
+  <div style="text-align:center; margin-top:1.5rem; font-size:0.85rem; color:var(--txt);">
+    By logging in, you agree to the <a href="#" style="color:var(--brick);">Terms of Service</a>
+  </div>
+</div>
+
+<!-- Load Supabase JS from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+
+<script>
+  async function handleAuth() {
+    const mobile = document.getElementById('mobile').value;
+    const password = document.getElementById('password').value;
+    const errorMsg = document.getElementById('error-msg');
+    const btn = document.querySelector('.btn-login');
+    
+    if(mobile.length !== 10 || !password) {
+      errorMsg.textContent = "Please enter a valid 10-digit mobile number and password.";
+      errorMsg.style.display = 'block';
+      return;
+    }
+    
+    btn.textContent = "Authenticating...";
+    btn.disabled = true;
+    errorMsg.style.display = 'none';
+    
+    // Map mobile to an internal email for Supabase Auth
+    const internalEmail = `+91${mobile}@jst.internal`;
+    
+    try {
+      // 1. Attempt to login
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: internalEmail,
+        password: password,
+      });
+      
+      // 2. If user doesn't exist (Invalid login credentials), attempt to sign up (First time)
+      if (error && error.message.includes("Invalid login credentials")) {
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+          email: internalEmail,
+          password: password,
+        });
+        
+        if (signUpError) throw signUpError;
+        data = signUpData;
+      } else if (error) {
+        throw error;
+      }
+      
+      // On success, redirect to the index hub
+      window.location.href = "index.html";
+    } catch (err) {
+      errorMsg.textContent = err.message;
+      errorMsg.style.display = 'block';
+      btn.textContent = "Secure Login";
+      btn.disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>

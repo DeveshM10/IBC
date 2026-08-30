@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register Lead | Associate Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/estate.css">
+<style>
+  body { background: #f8f6f0; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+  .sidebar { width: 260px; background: var(--ink); color: #fff; display: flex; flex-direction: column; }
+  .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .sidebar-header img { max-width: 180px; }
+  .sidebar-nav { flex: 1; padding: 1.5rem 0; }
+  .sidebar-link { display: block; padding: 0.8rem 1.5rem; color: rgba(255,255,255,.7); text-decoration: none; font-weight: 500; }
+  .sidebar-link:hover, .sidebar-link.active { color: #fff; background: rgba(255,255,255,.05); }
+  .sidebar-link.active { border-left: 3px solid var(--brick-lt); }
+  .sidebar-footer { padding: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,.5); border-top: 1px solid rgba(255,255,255,.1); }
+  
+  .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+  .topbar { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); }
+  .topbar-user { font-weight: 500; display: flex; align-items: center; gap: 1rem; }
+  .status-badge { background: #e0f2e9; color: #1e7e4c; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+  
+  .dashboard-container { padding: 2rem; max-width: 900px; margin: 0 auto; width: 100%; }
+  .page-title { font-family: 'Fraunces', serif; font-size: 2rem; margin-bottom: 1.5rem; color: var(--ink); }
+  
+  .panel { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+  
+  .form-group { margin-bottom: 1.5rem; }
+  .form-label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--ink); }
+  .form-control { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--rule); border-radius: 4px; font-family: inherit; font-size: 1rem; }
+  .form-control:focus { outline: none; border-color: var(--brick); box-shadow: 0 0 0 3px rgba(168,85,47,0.1); }
+  .form-help { font-size: 0.85rem; color: var(--txt); margin-top: 0.4rem; }
+  
+  .alert { padding: 1rem 1.5rem; border-radius: 4px; margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .alert--info { background: #e5f0ff; color: #0044aa; border: 1px solid #b3d4ff; }
+  .alert--error { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; display: none; }
+  .alert--success { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; display: none; }
+  
+  .step-container { display: flex; gap: 1rem; margin-bottom: 2rem; }
+  .step { flex: 1; padding: 1rem; background: #faf9f5; border: 1px solid var(--rule); border-radius: 4px; text-align: center; color: var(--txt); }
+  .step.active { background: var(--brick-btn); color: #fff; border-color: var(--brick-btn); }
+  .step.completed { background: #e8f5e9; color: #2e7d32; border-color: #c8e6c9; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <img src="../assets/jst-properties-logo-paper.png" alt="JST Properties" style="filter: brightness(0) invert(1);">
+    <div style="font-size:0.75rem; color:var(--brick-lt); margin-top:0.5rem; letter-spacing:1px; text-transform:uppercase;">Associate Portal</div>
+  </div>
+  <div class="sidebar-nav">
+    <a href="associate-dashboard.html" class="sidebar-link">Dashboard</a>
+    <a href="associate-lead-registration.html" class="sidebar-link active">Register Lead</a>
+    <a href="associate-referral.html" class="sidebar-link">Referral Code & Links</a>
+    <a href="#" class="sidebar-link">My Leads</a>
+    <a href="#" class="sidebar-link">Commission Ledger</a>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="topbar">
+    <div></div>
+    <div class="topbar-user">
+      <span class="status-badge">ACTIVE ASSOCIATE</span>
+      Rahul Sharma
+      <div style="width:35px; height:35px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600;">RS</div>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    <h1 class="page-title">Register New Lead</h1>
+    
+    <div class="step-container">
+      <div class="step active" id="step1-indicator">1. Check Mobile Number</div>
+      <div class="step" id="step2-indicator">2. Lead Details</div>
+      <div class="step" id="step3-indicator">3. Confirmation</div>
+    </div>
+    
+    <div class="alert alert--info">
+      <strong>Important:</strong> The mobile number is the primary identity for a lead. If this mobile number is already registered by another associate or exists as a direct JST lead, you will not be able to claim it. Lead attribution is valid for 90 days.
+    </div>
+    
+    <!-- Step 1: Check Mobile -->
+    <div class="panel" id="step1-panel">
+      <h2 style="margin-top:0; margin-bottom:1.5rem; font-size:1.2rem;">Verify Lead Availability</h2>
+      
+      <div class="alert alert--error" id="error-alert">
+        <strong>Lead Not Available:</strong> This mobile number is already assigned to another active associate or is an active direct JST client. You cannot claim this lead.
+      </div>
+      
+      <div class="alert alert--success" id="success-alert">
+        <strong>Lead Available!</strong> This number is free. Proceed to register the details below.
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Lead Mobile Number</label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" class="form-control" value="+91" style="width:70px; text-align:center;" readonly>
+          <input type="text" class="form-control" id="mobile-input" placeholder="Enter 10 digit mobile number" maxlength="10">
+        </div>
+        <p class="form-help">We use an atomic database transaction to ensure fairness if multiple associates submit at the exact same time.</p>
+      </div>
+      
+      <button class="btn btn--brick" onclick="checkMobile()">Check Availability</button>
+    </div>
+    
+    <!-- Step 2: Lead Details (Hidden initially) -->
+    <div class="panel" id="step2-panel" style="display:none; opacity:0.5; pointer-events:none;">
+      <h2 style="margin-top:0; margin-bottom:1.5rem; font-size:1.2rem;">Lead Information</h2>
+      
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" placeholder="E.g., Vikram Desai">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Email Address (Optional)</label>
+        <input type="email" class="form-control" placeholder="vikram@example.com">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Project Interest (Optional)</label>
+        <select class="form-control">
+          <option value="">-- Select Project/Region --</option>
+          <option value="dholera">Dholera Corridor</option>
+          <option value="sanand">Sanand Industrial</option>
+          <option value="nalsarovar">Nal Sarovar</option>
+          <option value="west_ahm">West Ahmedabad Residential</option>
+          <option value="undecided">Not Sure / Needs Consultation</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Notes for JST Team</label>
+        <textarea class="form-control" rows="3" placeholder="Any specific requirements or context about this lead?"></textarea>
+      </div>
+      
+      <button class="btn btn--brick">Register Lead</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function checkMobile() {
+    const input = document.getElementById('mobile-input').value;
+    const errorAlert = document.getElementById('error-alert');
+    const successAlert = document.getElementById('success-alert');
+    const step2 = document.getElementById('step2-panel');
+    const step1Indicator = document.getElementById('step1-indicator');
+    const step2Indicator = document.getElementById('step2-indicator');
+    
+    if (input.length !== 10) {
+      alert("Please enter a valid 10-digit number.");
+      return;
+    }
+    
+    // Blueprint simulation:
+    // If number ends in 0, simulate collision error.
+    if (input.endsWith('0')) {
+      errorAlert.style.display = 'flex';
+      successAlert.style.display = 'none';
+      step2.style.opacity = '0.5';
+      step2.style.pointerEvents = 'none';
+    } else {
+      errorAlert.style.display = 'none';
+      successAlert.style.display = 'flex';
+      step2.style.opacity = '1';
+      step2.style.pointerEvents = 'auto';
+      step1Indicator.classList.remove('active');
+      step1Indicator.classList.add('completed');
+      step2Indicator.classList.add('active');
+    }
+  }
+</script>
+</body>
+</html>

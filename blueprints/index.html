@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer Handover Blueprints | JST</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/estate.css">
+<style>
+  body { background: #f8f6f0; margin: 0; padding: 4rem 2rem; font-family: 'Inter Tight', sans-serif; }
+  .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 3rem; border-radius: 8px; border: 1px solid var(--rule); }
+  .title { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--ink); margin-top: 0; margin-bottom: 0.5rem; }
+  .subtitle { color: var(--txt); font-size: 1.1rem; margin-bottom: 2.5rem; }
+  
+  .portal-section { margin-bottom: 3rem; }
+  .portal-title { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--ink); border-bottom: 2px solid var(--rule); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+  
+  .links { display: flex; flex-direction: column; gap: 1rem; }
+  .blueprint-link { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: #faf9f5; border: 1px solid var(--rule); border-radius: 6px; text-decoration: none; color: var(--ink); font-weight: 500; transition: all 0.2s; }
+  .blueprint-link:hover { border-color: var(--brick); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .blueprint-desc { font-weight: 400; color: var(--txt); font-size: 0.9rem; margin-top: 0.2rem; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <img src="../assets/jst-properties-logo.png" alt="JST Properties" style="max-width: 200px; margin-bottom: 2rem;">
+  <h1 class="title">Developer Handover Blueprints</h1>
+  <p class="subtitle">HTML/CSS Prototypes for the Investor's Paradise Platform v2.0</p>
+  
+  <div class="portal-section">
+    <h2 class="portal-title">Associate Portal (Referrals)</h2>
+    <div class="links">
+      <a href="associate-dashboard.html" class="blueprint-link" target="_blank">
+        <div>
+          Associate Dashboard
+          <div class="blueprint-desc">Main CRM view for referral associates. Shows leads, EOIs, and commission.</div>
+        </div>
+        <span style="color:var(--brick);">&rarr;</span>
+      </a>
+      <a href="associate-lead-registration.html" class="blueprint-link" target="_blank">
+        <div>
+          Register Lead Flow
+          <div class="blueprint-desc">Demonstrates atomic mobile number checking and lead collision prevention.</div>
+        </div>
+        <span style="color:var(--brick);">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="portal-section">
+    <h2 class="portal-title">Investor Portal</h2>
+    <div class="links">
+      <a href="investor-dashboard.html" class="blueprint-link" target="_blank">
+        <div>
+          Investor Dashboard
+          <div class="blueprint-desc">Portfolio view for investors to track active investments and pending EOIs.</div>
+        </div>
+        <span style="color:var(--brick);">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="portal-section">
+    <h2 class="portal-title">Admin Operations</h2>
+    <div class="links">
+      <a href="admin-dashboard.html" class="blueprint-link" target="_blank">
+        <div>
+          Master Admin CRM
+          <div class="blueprint-desc">Central dashboard for JST to track all leads, process ATS, and approve payouts.</div>
+        </div>
+        <span style="color:var(--brick);">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

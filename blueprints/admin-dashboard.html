@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin CRM | JST Investor's Paradise</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/estate.css">
+<style>
+  body { background: #f0f2f5; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+  .sidebar { width: 260px; background: #0f172a; color: #fff; display: flex; flex-direction: column; }
+  .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .sidebar-header img { max-width: 180px; filter: brightness(0) invert(1); }
+  .sidebar-nav { flex: 1; padding: 1.5rem 0; }
+  .sidebar-link { display: block; padding: 0.8rem 1.5rem; color: rgba(255,255,255,.7); text-decoration: none; font-weight: 500; }
+  .sidebar-link:hover, .sidebar-link.active { color: #fff; background: rgba(255,255,255,.05); }
+  .sidebar-link.active { border-left: 3px solid #38bdf8; }
+  
+  .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+  .topbar { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
+  .topbar-user { font-weight: 500; display: flex; align-items: center; gap: 1rem; }
+  .status-badge { background: #e0f2e9; color: #1e7e4c; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+  
+  .dashboard-container { padding: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; }
+  .page-title { font-family: 'Inter Tight', sans-serif; font-size: 1.8rem; margin-bottom: 1.5rem; color: #0f172a; font-weight: 600; }
+  
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  .stat-card { background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .stat-card .label { font-size: 0.85rem; color: #64748b; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .stat-card .value { font-size: 2rem; font-weight: 600; color: #0f172a; }
+  
+  .panel { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .panel-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; background: #f8fafc; }
+  .panel-title { font-weight: 600; font-size: 1.1rem; margin: 0; color: #0f172a; }
+  
+  .data-table { width: 100%; border-collapse: collapse; text-align: left; }
+  .data-table th, .data-table td { padding: 1rem 1.5rem; border-bottom: 1px solid #e2e8f0; }
+  .data-table th { font-size: 0.8rem; text-transform: uppercase; color: #64748b; background: #f8fafc; font-weight: 600; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tbody tr:hover { background: #f1f5f9; }
+  
+  .badge { padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .badge--success { background: #dcfce7; color: #166534; }
+  .badge--warning { background: #fef3c7; color: #92400e; }
+  .badge--info { background: #e0f2fe; color: #075985; }
+  .badge--neutral { background: #f1f5f9; color: #475569; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <img src="../assets/jst-properties-logo-paper.png" alt="JST Properties">
+    <div style="font-size:0.75rem; color:#38bdf8; margin-top:0.5rem; letter-spacing:1px; text-transform:uppercase;">Master Admin CRM</div>
+  </div>
+  <div class="sidebar-nav">
+    <a href="admin-dashboard.html" class="sidebar-link active">Overview</a>
+    <a href="#" class="sidebar-link">Lead Database</a>
+    <a href="#" class="sidebar-link">Active EOIs & ATS</a>
+    <a href="#" class="sidebar-link">Associate Network</a>
+    <a href="#" class="sidebar-link">Commission Payouts</a>
+    <a href="#" class="sidebar-link">Project Settings</a>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="topbar">
+    <div></div>
+    <div class="topbar-user">
+      <span class="status-badge">SUPER ADMIN</span>
+      JST Operations
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+      <h1 class="page-title" style="margin:0;">System Overview</h1>
+      <button class="btn btn--brick btn--sm" style="background:#0f172a;">Export Reports</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Total System Leads</div>
+        <div class="value">452</div>
+        <div style="font-size:0.85rem; color:#64748b; margin-top:0.5rem;">+28 this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Active EOIs</div>
+        <div class="value">38</div>
+        <div style="font-size:0.85rem; color:#64748b; margin-top:0.5rem;">Across 4 projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Registered Associates</div>
+        <div class="value">14</div>
+        <div style="font-size:0.85rem; color:#64748b; margin-top:0.5rem;">11 active</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Pending Payouts</div>
+        <div class="value">₹ 14.2 L</div>
+        <div style="font-size:0.85rem; color:#ef4444; margin-top:0.5rem;">Requires approval</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">Recent EOI Conversions</h2>
+        <a href="#" style="font-size:0.85rem; color:#2563eb; font-weight:600;">View EOI Ledger &rarr;</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Lead Name</th>
+            <th>Project</th>
+            <th>Attributed Associate</th>
+            <th>EOI Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>28 Aug 2026</td>
+            <td>Vikram Desai</td>
+            <td>Dholera Phase II</td>
+            <td>Rahul Sharma (RS-442)</td>
+            <td>₹ 5,00,000</td>
+            <td><span class="badge badge--info">EOI Verified</span></td>
+            <td><a href="#" style="color:#2563eb; font-weight:500;">Process ATS</a></td>
+          </tr>
+          <tr>
+            <td>25 Aug 2026</td>
+            <td>Neha Gupta</td>
+            <td>Ahmedabad West Villas</td>
+            <td>Rahul Sharma (RS-442)</td>
+            <td>₹ 10,00,000</td>
+            <td><span class="badge badge--success">ATS Completed</span></td>
+            <td><a href="#" style="color:#2563eb; font-weight:500;">View Ledger</a></td>
+          </tr>
+          <tr>
+            <td>22 Aug 2026</td>
+            <td>Manoj Tiwari</td>
+            <td>Sanand Industrial</td>
+            <td>Direct JST Lead</td>
+            <td>₹ 2,00,000</td>
+            <td><span class="badge badge--warning">Payment Pending</span></td>
+            <td><a href="#" style="color:#2563eb; font-weight:500;">Follow Up</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">Commission Payout Queue</h2>
+        <button class="btn btn--outline btn--sm">Approve Batch</button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Associate</th>
+            <th>Lead / Investment</th>
+            <th>Gross Comm.</th>
+            <th>TDS (10%)</th>
+            <th>Net Payout</th>
+            <th>Hold Days Left</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rahul Sharma</td>
+            <td>Neha Gupta (Ahmd Villas)</td>
+            <td>₹ 3,00,000</td>
+            <td>₹ 30,000</td>
+            <td>₹ 2,70,000</td>
+            <td><span class="badge badge--neutral">15 Days</span></td>
+            <td><span class="badge badge--warning">On Hold</span></td>
+          </tr>
+          <tr>
+            <td>Meera Patel</td>
+            <td>Karan Singh (Nal Sarovar)</td>
+            <td>₹ 1,50,000</td>
+            <td>₹ 15,000</td>
+            <td>₹ 1,35,000</td>
+            <td><span class="badge badge--success">Cleared</span></td>
+            <td><span class="badge badge--info">Ready for Payout</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

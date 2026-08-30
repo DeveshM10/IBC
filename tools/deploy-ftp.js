@@ -9,6 +9,7 @@
    Then, every time:
      node tools/deploy-ftp.js            upload everything
      node tools/deploy-ftp.js --dry      list what would upload, send nothing
+     node tools/deploy-ftp.js --list     show what is already on the server (read-only)
 
    .ftp.json is gitignored. The password stays on this machine.
    ═══════════════════════════════════════════════════════════ */
@@ -16,6 +17,13 @@ const fs = require('fs');
 const path = require('path');
 
 const DRY = process.argv.includes('--dry');
+
+// --list connects and shows what is already on the server, uploading nothing.
+// Read-only, so it is safe to run before deciding where the files go.
+//   node tools/deploy-ftp.js --list
+//   node tools/deploy-ftp.js --list /public_html
+const LIST = process.argv.includes('--list');
+const LIST_PATH = LIST ? (process.argv[process.argv.indexOf('--list') + 1] || null) : null;
 
 // --code-only sends markup, styles, scripts and config but no media.
 // Useful for a first connection test. NOTE: the site will render without
@@ -26,7 +34,7 @@ const MEDIA = /\.(jpe?g|png|svg|gif|webp|pdf|mp4|ico|woff2?)$/i;
 // A dry run only lists files, so it needs neither the FTP client nor
 // credentials — you can check the manifest before setting anything up.
 let ftp, cfg;
-if (!DRY) {
+if (!DRY || LIST) {
   try { ftp = require('basic-ftp'); }
   catch { console.error('Missing dependency. Run:  npm install basic-ftp'); process.exit(1); }
 
@@ -80,24 +88,57 @@ const files = [
 const bytes = files.reduce((n, f) => n + fs.statSync(f).size, 0);
 console.log(files.length + ' files, ' + (bytes / 1024 / 1024).toFixed(2) + ' MB' + (CODE_ONLY ? '   [code only — no media]' : ''));
 
-if (DRY) { files.forEach(f => console.log('  ' + f)); console.log('\nDry run — nothing uploaded.'); process.exit(0); }
+if (DRY && !LIST) {
+  files.forEach(f => console.log('  ' + f));
+  console.log('\nDry run — nothing uploaded.');
+  process.exit(0);
+}
 
-(async () => {
-  const client = new ftp.Client(30000);
-  client.ftp.verbose = false;
-  const root = cfg.remoteRoot || '/public_html';
-
+async function connect(client) {
   // Try encrypted first. Plain FTP sends the password in clear text, so if we
   // fall back, say so loudly rather than doing it silently.
   try {
     await client.access({ host: cfg.host, user: cfg.user, password: cfg.password, secure: true });
     console.log('connected over FTPS (encrypted)');
   } catch (e) {
-    console.log('FTPS refused by the server (' + e.message + ')');
-    console.log('WARNING: falling back to plain FTP — the password is sent unencrypted.');
+    console.log('FTPS unavailable on this server (' + e.message.split('\n')[0] + ')');
+    console.log('WARNING: using plain FTP — the password is sent unencrypted.');
     await client.access({ host: cfg.host, user: cfg.user, password: cfg.password, secure: false });
     console.log('connected over plain FTP');
   }
+}
+
+if (LIST) {
+  // Read-only. Shows what is already on the server so we can see whether
+  // anything would be overwritten, and which directory is the web root.
+  (async () => {
+    const client = new ftp.Client(30000);
+    await connect(client);
+    const probe = LIST_PATH ? [LIST_PATH] : ['/', '/public_html', '/htdocs', '/www'];
+    for (const p of probe) {
+      try {
+        const items = await client.list(p);
+        console.log('\n' + p + '   (' + items.length + ' items)');
+        items.slice(0, 40).forEach(i => console.log(
+          '   ' + (i.isDirectory ? 'DIR  ' : '     ') + i.name.padEnd(38) +
+          (i.isDirectory ? '' : (i.size / 1024).toFixed(0) + ' KB')));
+        if (items.length > 40) console.log('   … and ' + (items.length - 40) + ' more');
+      } catch (e) {
+        console.log('\n' + p + '   — not accessible (' + e.message.split('\n')[0] + ')');
+      }
+    }
+    console.log('\nRead-only. Nothing was uploaded or changed.');
+    client.close();
+  })().catch(e => { console.error('FAILED: ' + e.message); process.exit(1); });
+
+} else {
+
+(async () => {
+  const client = new ftp.Client(30000);
+  client.ftp.verbose = false;
+  const root = cfg.remoteRoot || '/public_html';
+
+  await connect(client);
 
   let done = 0;
   for (const f of files) {
@@ -111,3 +152,5 @@ if (DRY) { files.forEach(f => console.log('  ' + f)); console.log('\nDry run —
   console.log('\ndone — ' + done + ' files uploaded to ' + root);
   client.close();
 })().catch(e => { console.error('\nFAILED: ' + e.message); process.exit(1); });
+
+}
