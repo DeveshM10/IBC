@@ -11,10 +11,29 @@ async function requireAuth() {
   const { data: { session }, error } = await supabase.auth.getSession();
   if (error || !session) {
     window.location.href = 'login.html';
+    return null;
   }
-  return session;
+  
+  // Fetch associate role and status
+  const { data: associate } = await supabase
+    .from('associates')
+    .select('status, role')
+    .eq('user_id', session.user.id)
+    .single();
+    
+  return { session, associate };
 }
 
+// Utility to enforce Admin access
+async function requireAdminAuth() {
+  const authData = await requireAuth();
+  if (!authData || !authData.associate || authData.associate.role !== 'ADMIN') {
+    alert('Access Denied: Admin privileges required.');
+    window.location.href = 'index.html'; // Redirect to associate dashboard
+    return null;
+  }
+  return authData;
+}
 // Utility to logout
 async function handleLogout() {
   await supabase.auth.signOut();

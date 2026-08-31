@@ -77,9 +77,14 @@
     </div>
   </div>
 
-  <div class="dashboard-container">
+  <div class="dashboard-container" id="kyc-pending-container" style="display:none; text-align:center; padding: 4rem 2rem;">
+    <h2 style="font-family:'Fraunces', serif; color:var(--ink); margin-bottom:1rem;">Account Pending Verification</h2>
+    <p style="color:var(--txt); max-width:600px; margin:0 auto;">Your associate account has been created successfully, but it is currently awaiting KYC verification and admin approval. You will gain access to the dashboard and be able to register leads once approved.</p>
+  </div>
+
+  <div class="dashboard-container" id="dashboard-main-container" style="display:none;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
-      <h1 class="page-title" style="margin:0;">Welcome back, Rahul</h1>
+      <h1 class="page-title" style="margin:0;">Welcome back, <span id="user-name-display"></span></h1>
       <a href="associate-lead-registration.html" class="btn btn--brick btn--sm">Register New Lead</a>
     </div>
 
@@ -217,17 +222,26 @@
 <script>
   async function loadDashboardData() {
     // 1. Enforce Authentication
-    const session = await requireAuth();
+    const authData = await requireAuth();
+    if (!authData) return;
+    
+    const session = authData.session;
+    const associate = authData.associate;
     
     // Set user email in topbar
     const email = session.user.email;
     const mobile = email.split('@')[0].replace('+91', '');
     document.getElementById('user-name-display').innerText = `Associate (${mobile})`;
     
+    // 2. Check KYC Status
+    if (!associate || associate.status === 'PENDING_KYC') {
+      document.getElementById('kyc-pending-container').style.display = 'block';
+      return; // Stop loading dashboard
+    }
+    
+    document.getElementById('dashboard-main-container').style.display = 'block';
+    
     try {
-      // 2. Fetch Real Leads for this Associate (Assuming Associate is linked by user_id)
-      const { data: associate } = await supabase.from('associates').select('id').eq('user_id', session.user.id).single();
-      
       if(associate) {
         // Fetch attributed leads
         const { data: attributions } = await supabase.from('lead_attributions')

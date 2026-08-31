@@ -113,17 +113,17 @@
       
       <div class="form-group">
         <label class="form-label">Full Name</label>
-        <input type="text" class="form-control" placeholder="E.g., Vikram Desai">
+        <input type="text" class="form-control" id="lead-name" placeholder="E.g., Vikram Desai">
       </div>
       
       <div class="form-group">
         <label class="form-label">Email Address (Optional)</label>
-        <input type="email" class="form-control" placeholder="vikram@example.com">
+        <input type="email" class="form-control" id="lead-email" placeholder="vikram@example.com">
       </div>
       
       <div class="form-group">
         <label class="form-label">Project Interest (Optional)</label>
-        <select class="form-control">
+        <select class="form-control" id="lead-project">
           <option value="">-- Select Project/Region --</option>
           <option value="dholera">Dholera Corridor</option>
           <option value="sanand">Sanand Industrial</option>
@@ -135,17 +135,36 @@
       
       <div class="form-group">
         <label class="form-label">Notes for JST Team</label>
-        <textarea class="form-control" rows="3" placeholder="Any specific requirements or context about this lead?"></textarea>
+        <textarea class="form-control" id="lead-notes" rows="3" placeholder="Any specific requirements or context about this lead?"></textarea>
       </div>
       
-      <button class="btn btn--brick">Register Lead</button>
+      <button class="btn btn--brick" onclick="registerLead()">Register Lead</button>
     </div>
 
   </div>
 </div>
 
+<!-- Load Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
 <script>
-  function checkMobile() {
+  let currentAssociate = null;
+
+  async function init() {
+    const authData = await requireAuth();
+    if (!authData) return;
+    
+    currentAssociate = authData.associate;
+    
+    // Check KYC Status
+    if (!currentAssociate || currentAssociate.status === 'PENDING_KYC') {
+      alert("Your account is pending KYC verification. You cannot register leads yet.");
+      window.location.href = 'index.html';
+      return;
+    }
+  }
+
+  async function checkMobile() {
     const input = document.getElementById('mobile-input').value;
     const errorAlert = document.getElementById('error-alert');
     const successAlert = document.getElementById('success-alert');
@@ -158,23 +177,100 @@
       return;
     }
     
-    // Blueprint simulation:
-    // If number ends in 0, simulate collision error.
-    if (input.endsWith('0')) {
-      errorAlert.style.display = 'flex';
-      successAlert.style.display = 'none';
-      step2.style.opacity = '0.5';
-      step2.style.pointerEvents = 'none';
-    } else {
-      errorAlert.style.display = 'none';
-      successAlert.style.display = 'flex';
-      step2.style.opacity = '1';
-      step2.style.pointerEvents = 'auto';
-      step1Indicator.classList.remove('active');
-      step1Indicator.classList.add('completed');
-      step2Indicator.classList.add('active');
+    try {
+      // Check if lead exists in DB
+      const { data, error } = await supabase
+        .from('leads')
+        .select('id')
+        .eq('masked_mobile', input)
+        .maybeSingle();
+        
+      if (data) {
+        // Collision!
+        errorAlert.style.display = 'flex';
+        successAlert.style.display = 'none';
+        step2.style.opacity = '0.5';
+        step2.style.pointerEvents = 'none';
+      } else {
+        // Available!
+        errorAlert.style.display = 'none';
+        successAlert.style.display = 'flex';
+        step2.style.opacity = '1';
+        step2.style.pointerEvents = 'auto';
+        step1Indicator.classList.remove('active');
+        step1Indicator.classList.add('completed');
+        step2Indicator.classList.add('active');
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error checking mobile number.");
     }
   }
+
+  async function registerLead() {
+    const mobile = document.getElementById('mobile-input').value;
+    const name = document.getElementById('lead-name').value;
+    const email = document.getElementById('lead-email').value;
+    const project = document.getElementById('lead-project').value;
+    const notes = document.getElementById('lead-notes').value;
+    
+    if (!name) {
+      alert("Please enter the lead's name.");
+      return;
+    }
+
+    try {
+      // 1. Insert into leads (The DB trigger will block duplicates securely)
+      const { data: leadData, error: leadError } = await supabase
+        .from('leads')
+        .insert([{
+          normalized_mobile_hash: mobile, // Storing raw for MVP, would normally be hashed
+          masked_mobile: mobile,
+          name: name,
+          source: project || 'Website Portal'
+        }])
+        .select()
+        .single();
+        
+      if (leadError) {
+        if (leadError.message.includes('already exists') || leadError.code === '23505') {
+          alert("Collision detected: This lead was just registered by someone else!");
+          window.location.reload();
+          return;
+        }
+        throw leadError;
+      }
+      
+      // 2. Insert attribution
+      const { error: attrError } = await supabase
+        .from('lead_attributions')
+        .insert([{
+          lead_id: leadData.id,
+          associate_id: currentAssociate.id
+        }]);
+        
+      if (attrError) throw attrError;
+      
+      // Optional: Add notes to activities
+      if (notes) {
+        await supabase.from('lead_activities').insert([{
+          lead_id: leadData.id,
+          user_id: (await supabase.auth.getSession()).data.session.user.id,
+          activity_type: 'note',
+          notes: notes
+        }]);
+      }
+      
+      alert("Lead registered successfully!");
+      window.location.href = 'index.html';
+      
+    } catch (err) {
+      console.error(err);
+      alert("Error registering lead. Please try again.");
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
