@@ -41,7 +41,7 @@
     <div id="helper-text" style="display:none; font-size:0.8rem; color:var(--txt); margin-top:0.4rem;">Choose a strong password for your new account.</div>
   </div>
   
-  <button class="btn btn--brick btn-login" id="auth-btn" onclick="handleAuth()">Secure Login</button>
+  <button class="btn btn--brick btn-login" id="auth-btn" onclick="handleAuth()"><span>Secure Login</span></button>
   
   <div style="text-align:center; margin-top:1.2rem; font-size:0.9rem;">
     <a href="#" onclick="toggleMode(); return false;" id="mode-toggle" style="color:var(--brick); text-decoration:none; font-weight:500;">New user? Register here</a>
@@ -68,12 +68,12 @@
     
     if(isLoginMode) {
       title.innerText = 'Portal Access';
-      btn.innerText = 'Secure Login';
+      btn.innerHTML = '<span>Secure Login</span>';
       toggle.innerText = 'New user? Register here';
       helper.style.display = 'none';
     } else {
       title.innerText = 'Create Account';
-      btn.innerText = 'Sign Up';
+      btn.innerHTML = '<span>Sign Up</span>';
       toggle.innerText = 'Already have an account? Login here';
       helper.style.display = 'block';
     }
@@ -91,7 +91,7 @@
       return;
     }
     
-    btn.textContent = "Authenticating...";
+    btn.innerHTML = "<span>Authenticating...</span>";
     btn.disabled = true;
     errorMsg.style.display = 'none';
     
@@ -123,7 +123,7 @@
     } catch (err) {
       errorMsg.textContent = err.message;
       errorMsg.style.display = 'block';
-      btn.textContent = isLoginMode ? "Secure Login" : "Sign Up";
+      btn.innerHTML = isLoginMode ? "<span>Secure Login</span>" : "<span>Sign Up</span>";
       btn.disabled = false;
     }
   }
