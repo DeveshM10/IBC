@@ -3,78 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Developer Handover Blueprints | JST</title>
+<title>Associate Dashboard | JST Investor's Paradise</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/estate.css">
 <style>
-  body { background: #f8f6f0; margin: 0; padding: 4rem 2rem; font-family: 'Inter Tight', sans-serif; }
-  .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 3rem; border-radius: 8px; border: 1px solid var(--rule); }
-  .title { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--ink); margin-top: 0; margin-bottom: 0.5rem; }
-  .subtitle { color: var(--txt); font-size: 1.1rem; margin-bottom: 2.5rem; }
+  body { background: #f8f6f0; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+  .sidebar { width: 260px; background: var(--ink); color: #fff; display: flex; flex-direction: column; }
+  .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .sidebar-header img { max-width: 180px; }
+  .sidebar-nav { flex: 1; padding: 1.5rem 0; }
+  .sidebar-link { display: block; padding: 0.8rem 1.5rem; color: rgba(255,255,255,.7); text-decoration: none; font-weight: 500; }
+  .sidebar-link:hover, .sidebar-link.active { color: #fff; background: rgba(255,255,255,.05); }
+  .sidebar-link.active { border-left: 3px solid var(--brick-lt); }
+  .sidebar-footer { padding: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,.5); border-top: 1px solid rgba(255,255,255,.1); }
   
-  .portal-section { margin-bottom: 3rem; }
-  .portal-title { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--ink); border-bottom: 2px solid var(--rule); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+  .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+  .topbar { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); }
+  .topbar-user { font-weight: 500; display: flex; align-items: center; gap: 1rem; }
+  .status-badge { background: #e0f2e9; color: #1e7e4c; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
   
-  .links { display: flex; flex-direction: column; gap: 1rem; }
-  .blueprint-link { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: #faf9f5; border: 1px solid var(--rule); border-radius: 6px; text-decoration: none; color: var(--ink); font-weight: 500; transition: all 0.2s; }
-  .blueprint-link:hover { border-color: var(--brick); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-  .blueprint-desc { font-weight: 400; color: var(--txt); font-size: 0.9rem; margin-top: 0.2rem; }
+  .dashboard-container { padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+  .page-title { font-family: 'Fraunces', serif; font-size: 2rem; margin-bottom: 1.5rem; color: var(--ink); }
+  
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  .stat-card { background: #fff; padding: 1.5rem; border-radius: 6px; border: 1px solid var(--rule); }
+  .stat-card .label { font-size: 0.85rem; color: var(--txt); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+  .stat-card .value { font-size: 2rem; font-weight: 500; font-family: 'Fraunces', serif; color: var(--ink); }
+  .stat-card .trend { font-size: 0.85rem; color: #1e7e4c; margin-top: 0.5rem; }
+  
+  .panel { background: #fff; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 2rem; }
+  .panel-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; background: #faf9f5; }
+  .panel-title { font-weight: 600; font-size: 1.1rem; margin: 0; }
+  
+  .data-table { width: 100%; border-collapse: collapse; text-align: left; }
+  .data-table th, .data-table td { padding: 1rem 1.5rem; border-bottom: 1px solid var(--rule); }
+  .data-table th { font-size: 0.85rem; text-transform: uppercase; color: var(--txt); background: #faf9f5; font-weight: 500; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tbody tr:hover { background: #fdfcfb; }
+  
+  .badge { padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .badge--success { background: #e0f2e9; color: #1e7e4c; }
+  .badge--warning { background: #fff4e5; color: #b26a00; }
+  .badge--info { background: #e5f0ff; color: #0055cc; }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <img src="../assets/jst-properties-logo.png" alt="JST Properties" style="max-width: 200px; margin-bottom: 2rem;">
-  <h1 class="title">Developer Handover Blueprints</h1>
-  <p class="subtitle">HTML/CSS Prototypes for the Investor's Paradise Platform v2.0</p>
-  
-  <div class="portal-section">
-    <h2 class="portal-title">Associate Portal (Referrals)</h2>
-    <div class="links">
-      <a href="associate-dashboard.html" class="blueprint-link" target="_blank">
-        <div>
-          Associate Dashboard
-          <div class="blueprint-desc">Main CRM view for referral associates. Shows leads, EOIs, and commission.</div>
-        </div>
-        <span style="color:var(--brick);">&rarr;</span>
-      </a>
-      <a href="associate-lead-registration.html" class="blueprint-link" target="_blank">
-        <div>
-          Register Lead Flow
-          <div class="blueprint-desc">Demonstrates atomic mobile number checking and lead collision prevention.</div>
-        </div>
-        <span style="color:var(--brick);">&rarr;</span>
-      </a>
-    </div>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <img src="../assets/jst-properties-logo-paper.png" alt="JST Properties" style="filter: brightness(0) invert(1);">
+    <div style="font-size:0.75rem; color:var(--brick-lt); margin-top:0.5rem; letter-spacing:1px; text-transform:uppercase;">Associate Portal</div>
   </div>
-
-  <div class="portal-section">
-    <h2 class="portal-title">Investor Portal</h2>
-    <div class="links">
-      <a href="investor-dashboard.html" class="blueprint-link" target="_blank">
-        <div>
-          Investor Dashboard
-          <div class="blueprint-desc">Portfolio view for investors to track active investments and pending EOIs.</div>
-        </div>
-        <span style="color:var(--brick);">&rarr;</span>
-      </a>
-    </div>
+  <div class="sidebar-nav">
+    <a href="associate-dashboard.html" class="sidebar-link active">Dashboard</a>
+    <a href="associate-lead-registration.html" class="sidebar-link">Register Lead</a>
+    <a href="associate-referral.html" class="sidebar-link">Referral Code & Links</a>
+    <a href="#" class="sidebar-link">My Leads</a>
+    <a href="#" class="sidebar-link">Commission Ledger</a>
+    <a href="#" class="sidebar-link">Settings & KYC</a>
   </div>
-
-  <div class="portal-section">
-    <h2 class="portal-title">Admin Operations</h2>
-    <div class="links">
-      <a href="admin-dashboard.html" class="blueprint-link" target="_blank">
-        <div>
-          Master Admin CRM
-          <div class="blueprint-desc">Central dashboard for JST to track all leads, process ATS, and approve payouts.</div>
-        </div>
-        <span style="color:var(--brick);">&rarr;</span>
-      </a>
-    </div>
+  <div class="sidebar-footer">
+    JST Properties &copy; 2026<br>Support: 93270 01929
   </div>
-
 </div>
+
+<div class="main-content">
+  <div class="topbar">
+    <div></div>
+    <div class="topbar-user">
+      <span class="status-badge">ACTIVE ASSOCIATE</span>
+      Rahul Sharma
+      <div style="width:35px; height:35px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600;">RS</div>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+      <h1 class="page-title" style="margin:0;">Welcome back, Rahul</h1>
+      <a href="associate-lead-registration.html" class="btn btn--brick btn--sm">Register New Lead</a>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Total Registered Leads</div>
+        <div class="value">24</div>
+        <div class="trend">+3 this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Active EOIs</div>
+        <div class="value">5</div>
+        <div class="trend">Pending final ATS</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Successful Investments</div>
+        <div class="value">2</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Commission Earned</div>
+        <div class="value">₹ 12,50,000</div>
+        <div class="trend">₹ 2,50,000 pending payout</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">Recent Lead Activity</h2>
+        <a href="#" style="font-size:0.85rem; color:var(--brick-btn); font-weight:500;">View All Leads &rarr;</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date Registered</th>
+            <th>Lead Name</th>
+            <th>Mobile (Masked)</th>
+            <th>Project Interest</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>28 Aug 2026</td>
+            <td>Vikram Desai</td>
+            <td>+91 ******4592</td>
+            <td>Dholera Phase II</td>
+            <td><span class="badge badge--success">EOI Submitted</span></td>
+          </tr>
+          <tr>
+            <td>25 Aug 2026</td>
+            <td>Anita Patel</td>
+            <td>+91 ******1180</td>
+            <td>Nal Sarovar Plots</td>
+            <td><span class="badge badge--info">Site Visit Done</span></td>
+          </tr>
+          <tr>
+            <td>20 Aug 2026</td>
+            <td>Suresh Menon</td>
+            <td>+91 ******7733</td>
+            <td>Sanand Industrial</td>
+            <td><span class="badge badge--warning">Following Up</span></td>
+          </tr>
+          <tr>
+            <td>12 Aug 2026</td>
+            <td>Neha Gupta</td>
+            <td>+91 ******8821</td>
+            <td>Ahmedabad West Villas</td>
+            <td><span class="badge badge--success">ATS Completed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">Recent Commission Ledger</h2>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Lead / Investment</th>
+            <th>Basis Amount</th>
+            <th>Rate</th>
+            <th>Net Payable (Post TDS)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="commission-table-body">
+          <tr><td colspan="6" style="text-align:center; padding: 2rem; color:var(--txt);">No commission data yet.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- Activity Log Modal -->
+<div id="activity-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:100; align-items:center; justify-content:center;">
+  <div style="background:#fff; width:100%; max-width:400px; padding:2rem; border-radius:8px;">
+    <h3 style="margin-bottom:1rem; font-family:'Fraunces', serif; color:var(--ink);">Log Activity</h3>
+    <input type="hidden" id="activity-lead-id">
+    
+    <div style="margin-bottom:1rem;">
+      <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Type</label>
+      <select id="activity-type" style="width:100%; padding:0.5rem; border:1px solid var(--rule); border-radius:4px;">
+        <option value="call">Phone Call</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="email">Email</option>
+        <option value="meeting">In-Person Meeting</option>
+      </select>
+    </div>
+    
+    <div style="margin-bottom:1rem;">
+      <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Duration / Info</label>
+      <input type="text" id="activity-duration" placeholder="e.g. 15 mins" style="width:100%; padding:0.5rem; border:1px solid var(--rule); border-radius:4px;">
+    </div>
+    
+    <div style="margin-bottom:1.5rem;">
+      <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Notes</label>
+      <textarea id="activity-notes" rows="3" placeholder="Summary of interaction..." style="width:100%; padding:0.5rem; border:1px solid var(--rule); border-radius:4px; font-family:inherit;"></textarea>
+    </div>
+    
+    <div style="display:flex; gap:1rem; justify-content:flex-end;">
+      <button onclick="closeActivityModal()" style="background:none; border:none; cursor:pointer; font-weight:500;">Cancel</button>
+      <button id="btn-save-activity" onclick="saveActivity()" class="btn btn--brick" style="padding:0.5rem 1rem;">Save Log</button>
+    </div>
+  </div>
+</div>
+
+<!-- Load Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script>
+  async function loadDashboardData() {
+    // 1. Enforce Authentication
+    const session = await requireAuth();
+    
+    // Set user email in topbar
+    const email = session.user.email;
+    const mobile = email.split('@')[0].replace('+91', '');
+    document.getElementById('user-name-display').innerText = `Associate (${mobile})`;
+    
+    try {
+      // 2. Fetch Real Leads for this Associate (Assuming Associate is linked by user_id)
+      const { data: associate } = await supabase.from('associates').select('id').eq('user_id', session.user.id).single();
+      
+      if(associate) {
+        // Fetch attributed leads
+        const { data: attributions } = await supabase.from('lead_attributions')
+          .select('*, leads(*)')
+          .eq('associate_id', associate.id)
+          .order('claimed_at', { ascending: false });
+          
+        const leadsBody = document.getElementById('leads-table-body');
+        
+        if (attributions && attributions.length > 0) {
+          leadsBody.innerHTML = ''; // Clear skeleton
+          
+          attributions.forEach(attr => {
+            const lead = attr.leads;
+            const row = `<tr>
+              <td>${new Date(attr.claimed_at).toLocaleDateString()}</td>
+              <td>${lead.name || 'Pending Name'}</td>
+              <td>${lead.masked_mobile}</td>
+              <td>${lead.source || 'N/A'}</td>
+              <td><span class="badge badge--info">${attr.status}</span></td>
+              <td><button onclick="openActivityModal('${lead.id}')" style="background:#f0f2f5; border:1px solid var(--rule); padding:0.3rem 0.6rem; border-radius:4px; cursor:pointer; font-size:0.8rem;">Log Activity</button></td>
+            </tr>`;
+            leadsBody.innerHTML += row;
+          });
+          
+          document.getElementById('stat-total-leads').innerText = attributions.length;
+        } else {
+          leadsBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 2rem; color:var(--txt);">No leads registered yet.</td></tr>`;
+        }
+      }
+      
+    } catch(err) {
+      console.error("Dashboard error:", err);
+    }
+  }
+  
+  function openActivityModal(leadId) {
+    document.getElementById('activity-lead-id').value = leadId;
+    document.getElementById('activity-type').value = 'call';
+    document.getElementById('activity-duration').value = '';
+    document.getElementById('activity-notes').value = '';
+    document.getElementById('activity-modal').style.display = 'flex';
+  }
+  
+  function closeActivityModal() {
+    document.getElementById('activity-modal').style.display = 'none';
+  }
+  
+  async function saveActivity() {
+    const btn = document.getElementById('btn-save-activity');
+    btn.innerText = 'Saving...';
+    btn.disabled = true;
+    
+    const leadId = document.getElementById('activity-lead-id').value;
+    const type = document.getElementById('activity-type').value;
+    const duration = document.getElementById('activity-duration').value;
+    const notes = document.getElementById('activity-notes').value;
+    
+    try {
+      const session = await supabase.auth.getSession();
+      const userId = session.data.session.user.id;
+      
+      const { error } = await supabase.from('lead_activities').insert([
+        {
+          lead_id: leadId,
+          user_id: userId,
+          activity_type: type,
+          duration: duration,
+          notes: notes
+        }
+      ]);
+      
+      if (error) throw error;
+      alert("Activity Logged Successfully!");
+      closeActivityModal();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save activity.");
+    } finally {
+      btn.innerText = 'Save Log';
+      btn.disabled = false;
+    }
+  }
+
+  // Initialize
+  document.addEventListener("DOMContentLoaded", loadDashboardData);
+</script>
 
 </body>
 </html>
