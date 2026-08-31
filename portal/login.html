@@ -23,7 +23,7 @@
 
 <div class="login-box">
   <img src="../assets/jst-properties-logo.png" alt="JST Properties" class="login-logo">
-  <h2 style="text-align:center; font-family:'Fraunces', serif; color:var(--ink); margin-bottom:2rem;">Portal Access</h2>
+  <h2 id="auth-title" style="text-align:center; font-family:'Fraunces', serif; color:var(--ink); margin-bottom:2rem;">Portal Access</h2>
   
   <div class="error-message" id="error-msg">Invalid email or password.</div>
   
@@ -36,12 +36,16 @@
   </div>
   
   <div class="form-group">
-    <label class="form-label">Password</label>
+    <label class="form-label" id="password-label">Password</label>
     <input type="password" id="password" class="form-control" placeholder="••••••••" required>
-    <div style="font-size:0.8rem; color:var(--txt); margin-top:0.4rem;">Logging in for the first time? The password you enter will become your permanent password.</div>
+    <div id="helper-text" style="display:none; font-size:0.8rem; color:var(--txt); margin-top:0.4rem;">Choose a strong password for your new account.</div>
   </div>
   
-  <button class="btn btn--brick btn-login" onclick="handleAuth()">Secure Login</button>
+  <button class="btn btn--brick btn-login" id="auth-btn" onclick="handleAuth()">Secure Login</button>
+  
+  <div style="text-align:center; margin-top:1.2rem; font-size:0.9rem;">
+    <a href="#" onclick="toggleMode(); return false;" id="mode-toggle" style="color:var(--brick); text-decoration:none; font-weight:500;">New user? Register here</a>
+  </div>
   
   <div style="text-align:center; margin-top:1.5rem; font-size:0.85rem; color:var(--txt);">
     By logging in, you agree to the <a href="#" style="color:var(--brick);">Terms of Service</a>
@@ -53,11 +57,33 @@
 <script src="js/supabase-config.js"></script>
 
 <script>
+  let isLoginMode = true;
+  
+  function toggleMode() {
+    isLoginMode = !isLoginMode;
+    const title = document.getElementById('auth-title');
+    const btn = document.getElementById('auth-btn');
+    const toggle = document.getElementById('mode-toggle');
+    const helper = document.getElementById('helper-text');
+    
+    if(isLoginMode) {
+      title.innerText = 'Portal Access';
+      btn.innerText = 'Secure Login';
+      toggle.innerText = 'New user? Register here';
+      helper.style.display = 'none';
+    } else {
+      title.innerText = 'Create Account';
+      btn.innerText = 'Sign Up';
+      toggle.innerText = 'Already have an account? Login here';
+      helper.style.display = 'block';
+    }
+  }
+
   async function handleAuth() {
     const mobile = document.getElementById('mobile').value;
     const password = document.getElementById('password').value;
     const errorMsg = document.getElementById('error-msg');
-    const btn = document.querySelector('.btn-login');
+    const btn = document.getElementById('auth-btn');
     
     if(mobile.length !== 10 || !password) {
       errorMsg.textContent = "Please enter a valid 10-digit mobile number and password.";
@@ -97,7 +123,7 @@
     } catch (err) {
       errorMsg.textContent = err.message;
       errorMsg.style.display = 'block';
-      btn.textContent = "Secure Login";
+      btn.textContent = isLoginMode ? "Secure Login" : "Sign Up";
       btn.disabled = false;
     }
   }
